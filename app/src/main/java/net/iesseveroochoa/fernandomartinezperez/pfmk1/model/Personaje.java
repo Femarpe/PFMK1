@@ -66,7 +66,7 @@ public class Personaje {
         hechizos = new Hechizos();
     }
 
-    public void setValorCaracteristicas(int fuerza, int destreza, int constitucion, int inteligencia, int sabiduria, int carisma) {
+    public void setValorCaracteristicas(int fuerza, int destreza, int constitucion, int inteligencia, int sabiduria, int carisma, int bonCompetencia) {
         caracteristicas.setValFuerza(fuerza);
         caracteristicas.setValDestreza(destreza);
         caracteristicas.setValConstitucion(constitucion);
@@ -74,43 +74,45 @@ public class Personaje {
         caracteristicas.setValSabiduria(sabiduria);
         caracteristicas.setValCarisma(carisma);
         setModCaracteristica();
+        this.bonCompetencia = bonCompetencia;
     }
 
     public void setModCaracteristica() {
-        caracteristicas.setModFuerza(calcularMod(caracteristicas.getValFuerza()));
-        habilidades.setAtletismo(calcularMod(caracteristicas.getValFuerza()));
+        caracteristicas.setModFuerza(calcularMod(caracteristicas.getValFuerza(),caracteristicas.isCompetenciaFuerza()));
+        habilidades.setAtletismo(calcularMod(caracteristicas.getValFuerza(), habilidades.isCompetenciaAtletismo()));
 
-        caracteristicas.setModDestreza(calcularMod(caracteristicas.getValDestreza()));
-        habilidades.setAcrobacias(calcularMod(caracteristicas.getValDestreza()));
-        habilidades.setJuegoDeManos(calcularMod(caracteristicas.getValDestreza()));
-        habilidades.setSigilo(calcularMod(caracteristicas.getValDestreza()));
+        caracteristicas.setModDestreza(calcularMod(caracteristicas.getValDestreza(), caracteristicas.isCompetenciaDestreza()));
+        habilidades.setAcrobacias(calcularMod(caracteristicas.getValDestreza(), habilidades.isCompetenciaAcrobacias()));
+        habilidades.setJuegoDeManos(calcularMod(caracteristicas.getValDestreza(),habilidades.isCompetenciaJDM()));
+        habilidades.setSigilo(calcularMod(caracteristicas.getValDestreza(), habilidades.isCompetenciaSigilo()));
 
-        caracteristicas.setModConstitucion(calcularMod(caracteristicas.getValConstitucion()));
+        caracteristicas.setModConstitucion(calcularMod(caracteristicas.getValConstitucion(), caracteristicas.isCompetenciaConstitucion()));
 
-        caracteristicas.setModInteligencia(calcularMod(caracteristicas.getValInteligencia()));
-        habilidades.setcArcano(calcularMod(caracteristicas.getValInteligencia()));
-        habilidades.setHistoria(calcularMod(caracteristicas.getValInteligencia()));
-        habilidades.setInvestigacion(calcularMod(caracteristicas.getValInteligencia()));
-        habilidades.setNaturaleza(calcularMod(caracteristicas.getValInteligencia()));
-        habilidades.setReligion(calcularMod(caracteristicas.getValInteligencia()));
+        caracteristicas.setModInteligencia(calcularMod(caracteristicas.getValInteligencia(), caracteristicas.isCompetenciaInteligencia()));
+        habilidades.setcArcano(calcularMod(caracteristicas.getValInteligencia(), habilidades.isCompetenciaCArcano()));
+        habilidades.setHistoria(calcularMod(caracteristicas.getValInteligencia(), habilidades.isCompetenciaHistoria()));
+        habilidades.setInvestigacion(calcularMod(caracteristicas.getValInteligencia(), habilidades.isCompetenciaInvestigacion()));
+        habilidades.setNaturaleza(calcularMod(caracteristicas.getValInteligencia(), habilidades.isCompetenciaNaturaleza()));
+        habilidades.setReligion(calcularMod(caracteristicas.getValInteligencia(), habilidades.isCompetenciaReligion()));
 
-        caracteristicas.setModSabiduria(calcularMod(caracteristicas.getValSabiduria()));
-        habilidades.setMedicina(calcularMod(caracteristicas.getValSabiduria()));
-        habilidades.setPercepcion(calcularMod(caracteristicas.getValSabiduria()));
-        habilidades.setPerspicacia(calcularMod(caracteristicas.getValSabiduria()));
-        habilidades.setSupervivencia(calcularMod(caracteristicas.getValSabiduria()));
-        habilidades.settConAnimales(calcularMod(caracteristicas.getValSabiduria()));
+        caracteristicas.setModSabiduria(calcularMod(caracteristicas.getValSabiduria(), caracteristicas.isCompetenciaSabiduria()));
+        habilidades.setMedicina(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaMedicina()));
+        habilidades.setPercepcion(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaPercepcion()));
+        habilidades.setPerspicacia(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaPerspicacia()));
+        habilidades.setSupervivencia(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaSupervivencia()));
+        habilidades.settConAnimales(calcularMod(caracteristicas.getValSabiduria(),habilidades.isCompetenciaTCA()));
 
-        caracteristicas.setModCarisma(calcularMod(caracteristicas.getValCarisma()));
-        habilidades.setEnganyo(calcularMod(caracteristicas.getValCarisma()));
-        habilidades.setInterpretacion(calcularMod(caracteristicas.getValCarisma()));
-        habilidades.setIntimidacion(calcularMod(caracteristicas.getValCarisma()));
-        habilidades.setPersuasion(calcularMod(caracteristicas.getValCarisma()));
+        caracteristicas.setModCarisma(calcularMod(caracteristicas.getValCarisma(), caracteristicas.isCompetenciaCarisma()));
+        habilidades.setEnganyo(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaEnganyo()));
+        habilidades.setInterpretacion(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaInterpretacion()));
+        habilidades.setIntimidacion(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaIntimidacion()));
+        habilidades.setPersuasion(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaPersuasion()) );
 
 
     }
 
-    public int calcularMod(int valorCaracteristica) {
+    public int calcularMod(int valorCaracteristica, boolean competencia) {
+
         int resultado = 0;
 
         if (valorCaracteristica == 1) {
@@ -143,10 +145,11 @@ public class Personaje {
             resultado = 8;
         } else if (valorCaracteristica >= 28 && valorCaracteristica <= 29) {
             resultado = 9;
-        } else if (valorCaracteristica == 30){
+        } else if (valorCaracteristica == 30) {
             resultado = 10;
         }
 
+        resultado = resultado + bonCompetencia;
         return resultado;
     }
 

@@ -3,28 +3,28 @@ package net.iesseveroochoa.fernandomartinezperez.pfmk1.model.habilidadesYCompete
 public class Caracteristicas {
 
     private int valFuerza;
-
     private int modFuerza;
+    private boolean competenciaFuerza;
 
     private int valDestreza;
-
     private int modDestreza;
+    private boolean competenciaDestreza;
 
     private int valConstitucion;
-
     private int modConstitucion;
+    private boolean competenciaConstitucion;
 
     private int valInteligencia;
-
     private int modInteligencia;
+    private boolean competenciaInteligencia;
 
     private int valSabiduria;
-
     private int modSabiduria;
+    private boolean competenciaSabiduria;
 
     private int valCarisma;
-
     private int modCarisma;
+    private boolean competenciaCarisma;
 
     public int getValFuerza() {
         return valFuerza;
@@ -120,5 +120,53 @@ public class Caracteristicas {
 
     public void setModCarisma(int modCarisma) {
         this.modCarisma = modCarisma;
+    }
+
+    public boolean isCompetenciaFuerza() {
+        return competenciaFuerza;
+    }
+
+    public void setCompetenciaFuerza(boolean competenciaFuerza) {
+        this.competenciaFuerza = competenciaFuerza;
+    }
+
+    public boolean isCompetenciaDestreza() {
+        return competenciaDestreza;
+    }
+
+    public void setCompetenciaDestreza(boolean competenciaDestreza) {
+        this.competenciaDestreza = competenciaDestreza;
+    }
+
+    public boolean isCompetenciaConstitucion() {
+        return competenciaConstitucion;
+    }
+
+    public void setCompetenciaConstitucion(boolean competenciaConstitucion) {
+        this.competenciaConstitucion = competenciaConstitucion;
+    }
+
+    public boolean isCompetenciaInteligencia() {
+        return competenciaInteligencia;
+    }
+
+    public void setCompetenciaInteligencia(boolean competenciaInteligencia) {
+        this.competenciaInteligencia = competenciaInteligencia;
+    }
+
+    public boolean isCompetenciaSabiduria() {
+        return competenciaSabiduria;
+    }
+
+    public void setCompetenciaSabiduria(boolean competenciaSabiduria) {
+        this.competenciaSabiduria = competenciaSabiduria;
+    }
+
+    public boolean isCompetenciaCarisma() {
+        return competenciaCarisma;
+    }
+
+    public void setCompetenciaCarisma(boolean competenciaCarisma) {
+        this.competenciaCarisma = competenciaCarisma;
     }
 }
