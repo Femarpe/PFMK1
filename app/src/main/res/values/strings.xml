@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PFMK1</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_principal">Principal</string>
+    <string name="nombre">Nombre</string>
+    <string name="Vacio" />
+
+</resources>
