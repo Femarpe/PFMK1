@@ -1,5 +1,15 @@
 package net.iesseveroochoa.fernandomartinezperez.pfmk1.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.provider.BaseColumns;
+
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Inventario.Arma;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Inventario.Dinero;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Inventario.Inventario;
@@ -8,9 +18,37 @@ import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.habilidadesYCompeten
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.habilidadesYCompetencias.Habilidades;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.habilidadesYCompetencias.RasgoOCompetencia;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Personaje {
+@Entity(tableName = Personaje.TABLE_NAME,
+        indices = {@Index(value = {Personaje.ID}, unique = true)})
+
+public class Personaje implements Parcelable {
+
+    public static final String TABLE_NAME = "personage";
+    public static final String ID = BaseColumns._ID;
+    public static final String NOMBRE_PERSONAJE = "nombre_personaje";
+    public static final String CLASE = "clase";
+    public static final String RAZA = "raza";
+    public static final String ALINEAMIENTO = "alineamiento";
+    public static final String NIVEL = "nivel";
+    public static final String PUNTOSXP = "puntos_xp";
+    public static final String TRANSFONDO = "transfondo";
+    public static final String DADOSDEGOLPE = "dados_de_golpe";
+    public static final String BON_COMPETENCIA = "bon_competencia";
+    public static final String INICIATIVA = "iniciativa";
+    public static final String C_ARMADURA = "c_armaduea";
+    public static final String VELOCIDAD = "velocidad";
+    public static final String PG_MAXIMOS = "pg_maximos";
+    public static final String PG_ACTUALES = "pg_actuales";
+    public static final String PERCEPCION_PASIVA = "percepcionPasiva";
+
+
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = ID)
+    private int id;
 
     private String nombrePersonaje;
 
@@ -24,7 +62,7 @@ public class Personaje {
 
     private String puntosnXP;
 
-    private String trandondo;
+    private String transfondo;
 
     private String dadosDeGolpe;
 
@@ -58,6 +96,65 @@ public class Personaje {
 
     private List<RasgoOCompetencia> competencias;
 
+    static int contador = 1;
+
+
+    public Personaje(String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String trandondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int cArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, Dinero dinero, Inventario inventario, Caracteristicas caracteristicas, Habilidades habilidades, Hechizos hechizos, List<Arma> armas, List<RasgoOCompetencia> rasgos, List<RasgoOCompetencia> competencias) {
+
+        this.id = contador++;
+        this.nombrePersonaje = nombrePersonaje;
+        this.clase = clase;
+        this.raza = raza;
+        this.alinemiento = alinemiento;
+        this.nivel = nivel;
+        this.puntosnXP = puntosnXP;
+        this.transfondo = trandondo;
+        this.dadosDeGolpe = dadosDeGolpe;
+        this.bonCompetencia = bonCompetencia;
+        this.iniciativa = iniciativa;
+        this.cArmadura = cArmadura;
+        this.velocidad = velocidad;
+        this.pgMaximos = pgMaximos;
+        this.pgActuales = pgActuales;
+        this.percepcionPasiva = percepcionPasiva;
+        this.dinero = dinero;
+        this.inventario = inventario;
+        this.caracteristicas = caracteristicas;
+        this.habilidades = habilidades;
+        this.hechizos = hechizos;
+        this.armas = armas;
+        this.rasgos = rasgos;
+        this.competencias = competencias;
+    }
+
+    public Personaje(int id, String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String trandondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int cArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, Dinero dinero, Inventario inventario, Caracteristicas caracteristicas, Habilidades habilidades, Hechizos hechizos, List<Arma> armas, List<RasgoOCompetencia> rasgos, List<RasgoOCompetencia> competencias) {
+
+        this.id = id;
+        this.nombrePersonaje = nombrePersonaje;
+        this.clase = clase;
+        this.raza = raza;
+        this.alinemiento = alinemiento;
+        this.nivel = nivel;
+        this.puntosnXP = puntosnXP;
+        this.transfondo = trandondo;
+        this.dadosDeGolpe = dadosDeGolpe;
+        this.bonCompetencia = bonCompetencia;
+        this.iniciativa = iniciativa;
+        this.cArmadura = cArmadura;
+        this.velocidad = velocidad;
+        this.pgMaximos = pgMaximos;
+        this.pgActuales = pgActuales;
+        this.percepcionPasiva = percepcionPasiva;
+        this.dinero = dinero;
+        this.inventario = inventario;
+        this.caracteristicas = caracteristicas;
+        this.habilidades = habilidades;
+        this.hechizos = hechizos;
+        this.armas = armas;
+        this.rasgos = rasgos;
+        this.competencias = competencias;
+    }
+
     public Personaje() {
         dinero = new Dinero();
         inventario = new Inventario();
@@ -78,12 +175,12 @@ public class Personaje {
     }
 
     public void setModCaracteristica() {
-        caracteristicas.setModFuerza(calcularMod(caracteristicas.getValFuerza(),caracteristicas.isCompetenciaFuerza()));
+        caracteristicas.setModFuerza(calcularMod(caracteristicas.getValFuerza(), caracteristicas.isCompetenciaFuerza()));
         habilidades.setAtletismo(calcularMod(caracteristicas.getValFuerza(), habilidades.isCompetenciaAtletismo()));
 
         caracteristicas.setModDestreza(calcularMod(caracteristicas.getValDestreza(), caracteristicas.isCompetenciaDestreza()));
         habilidades.setAcrobacias(calcularMod(caracteristicas.getValDestreza(), habilidades.isCompetenciaAcrobacias()));
-        habilidades.setJuegoDeManos(calcularMod(caracteristicas.getValDestreza(),habilidades.isCompetenciaJDM()));
+        habilidades.setJuegoDeManos(calcularMod(caracteristicas.getValDestreza(), habilidades.isCompetenciaJDM()));
         habilidades.setSigilo(calcularMod(caracteristicas.getValDestreza(), habilidades.isCompetenciaSigilo()));
 
         caracteristicas.setModConstitucion(calcularMod(caracteristicas.getValConstitucion(), caracteristicas.isCompetenciaConstitucion()));
@@ -100,13 +197,13 @@ public class Personaje {
         habilidades.setPercepcion(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaPercepcion()));
         habilidades.setPerspicacia(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaPerspicacia()));
         habilidades.setSupervivencia(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaSupervivencia()));
-        habilidades.settConAnimales(calcularMod(caracteristicas.getValSabiduria(),habilidades.isCompetenciaTCA()));
+        habilidades.settConAnimales(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaTCA()));
 
         caracteristicas.setModCarisma(calcularMod(caracteristicas.getValCarisma(), caracteristicas.isCompetenciaCarisma()));
         habilidades.setEnganyo(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaEnganyo()));
         habilidades.setInterpretacion(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaInterpretacion()));
         habilidades.setIntimidacion(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaIntimidacion()));
-        habilidades.setPersuasion(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaPersuasion()) );
+        habilidades.setPersuasion(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaPersuasion()));
 
 
     }
@@ -161,6 +258,15 @@ public class Personaje {
         this.nombrePersonaje = nombrePersonaje;
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getClase() {
         return clase;
     }
@@ -201,12 +307,12 @@ public class Personaje {
         this.puntosnXP = puntosnXP;
     }
 
-    public String getTrandondo() {
-        return trandondo;
+    public String getTransfondo() {
+        return transfondo;
     }
 
-    public void setTrandondo(String trandondo) {
-        this.trandondo = trandondo;
+    public void setTransfondo(String transfondo) {
+        this.transfondo = transfondo;
     }
 
     public String getDadosDeGolpe() {
@@ -336,4 +442,110 @@ public class Personaje {
     public void setCompetencias(List<RasgoOCompetencia> competencias) {
         this.competencias = competencias;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.nombrePersonaje);
+        dest.writeString(this.clase);
+        dest.writeString(this.raza);
+        dest.writeString(this.alinemiento);
+        dest.writeString(this.nivel);
+        dest.writeString(this.puntosnXP);
+        dest.writeString(this.transfondo);
+        dest.writeString(this.dadosDeGolpe);
+        dest.writeInt(this.bonCompetencia);
+        dest.writeInt(this.iniciativa);
+        dest.writeInt(this.cArmadura);
+        dest.writeInt(this.velocidad);
+        dest.writeInt(this.pgMaximos);
+        dest.writeInt(this.pgActuales);
+        dest.writeInt(this.percepcionPasiva);
+        //dest.writeParcelable(this.dinero, flags);
+        //dest.writeParcelable(this.inventario, flags);
+        //dest.writeParcelable(this.caracteristicas, flags);
+        //dest.writeParcelable(this.habilidades, flags);
+        //dest.writeParcelable(this.hechizos, flags);
+        dest.writeList(this.armas);
+        dest.writeList(this.rasgos);
+        dest.writeList(this.competencias);
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.id = source.readInt();
+        this.nombrePersonaje = source.readString();
+        this.clase = source.readString();
+        this.raza = source.readString();
+        this.alinemiento = source.readString();
+        this.nivel = source.readString();
+        this.puntosnXP = source.readString();
+        this.transfondo = source.readString();
+        this.dadosDeGolpe = source.readString();
+        this.bonCompetencia = source.readInt();
+        this.iniciativa = source.readInt();
+        this.cArmadura = source.readInt();
+        this.velocidad = source.readInt();
+        this.pgMaximos = source.readInt();
+        this.pgActuales = source.readInt();
+        this.percepcionPasiva = source.readInt();
+        this.dinero = source.readParcelable(Dinero.class.getClassLoader());
+        this.inventario = source.readParcelable(Inventario.class.getClassLoader());
+        this.caracteristicas = source.readParcelable(Caracteristicas.class.getClassLoader());
+        this.habilidades = source.readParcelable(Habilidades.class.getClassLoader());
+        this.hechizos = source.readParcelable(Hechizos.class.getClassLoader());
+        this.armas = new ArrayList<Arma>();
+        source.readList(this.armas, Arma.class.getClassLoader());
+        this.rasgos = new ArrayList<RasgoOCompetencia>();
+        source.readList(this.rasgos, RasgoOCompetencia.class.getClassLoader());
+        this.competencias = new ArrayList<RasgoOCompetencia>();
+        source.readList(this.competencias, RasgoOCompetencia.class.getClassLoader());
+    }
+
+    protected Personaje(Parcel in) {
+        this.id = in.readInt();
+        this.nombrePersonaje = in.readString();
+        this.clase = in.readString();
+        this.raza = in.readString();
+        this.alinemiento = in.readString();
+        this.nivel = in.readString();
+        this.puntosnXP = in.readString();
+        this.transfondo = in.readString();
+        this.dadosDeGolpe = in.readString();
+        this.bonCompetencia = in.readInt();
+        this.iniciativa = in.readInt();
+        this.cArmadura = in.readInt();
+        this.velocidad = in.readInt();
+        this.pgMaximos = in.readInt();
+        this.pgActuales = in.readInt();
+        this.percepcionPasiva = in.readInt();
+        this.dinero = in.readParcelable(Dinero.class.getClassLoader());
+        this.inventario = in.readParcelable(Inventario.class.getClassLoader());
+        this.caracteristicas = in.readParcelable(Caracteristicas.class.getClassLoader());
+        this.habilidades = in.readParcelable(Habilidades.class.getClassLoader());
+        this.hechizos = in.readParcelable(Hechizos.class.getClassLoader());
+        this.armas = new ArrayList<Arma>();
+        in.readList(this.armas, Arma.class.getClassLoader());
+        this.rasgos = new ArrayList<RasgoOCompetencia>();
+        in.readList(this.rasgos, RasgoOCompetencia.class.getClassLoader());
+        this.competencias = new ArrayList<RasgoOCompetencia>();
+        in.readList(this.competencias, RasgoOCompetencia.class.getClassLoader());
+    }
+
+    public static final Creator<Personaje> CREATOR = new Creator<Personaje>() {
+        @Override
+        public Personaje createFromParcel(Parcel source) {
+            return new Personaje(source);
+        }
+
+        @Override
+        public Personaje[] newArray(int size) {
+            return new Personaje[size];
+        }
+    };
 }
