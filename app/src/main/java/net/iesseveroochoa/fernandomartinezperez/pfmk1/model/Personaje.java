@@ -13,6 +13,8 @@ import androidx.room.PrimaryKey;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Inventario.Arma;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Inventario.Dinero;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Inventario.Inventario;
+import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Inventario.ObjetoInventario;
+import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Magia.Hechizo;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Magia.Hechizos;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.habilidadesYCompetencias.Caracteristicas;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.habilidadesYCompetencias.Habilidades;
@@ -23,7 +25,6 @@ import java.util.List;
 
 @Entity(tableName = Personaje.TABLE_NAME,
         indices = {@Index(value = {Personaje.ID}, unique = true)})
-
 public class Personaje implements Parcelable {
 
     public static final String TABLE_NAME = "personage";
@@ -44,6 +45,7 @@ public class Personaje implements Parcelable {
     public static final String PG_ACTUALES = "pg_actuales";
     public static final String PERCEPCION_PASIVA = "percepcionPasiva";
 
+    /**ESTADISTICAS PRINCIPALES*/
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -80,15 +82,130 @@ public class Personaje implements Parcelable {
 
     private int percepcionPasiva;
 
-    private Dinero dinero;
+    /** DINERO */
 
-    private Inventario inventario;
+    private int cobre;
 
-    private Caracteristicas caracteristicas;
+    private int plata;
 
-    private Habilidades habilidades;
+    private int electrum;
 
-    private Hechizos hechizos;
+    private int oro;
+
+    private int platinum;
+
+    /**INVENTARIO*/
+
+    private List<ObjetoInventario> Equipo;
+
+    private List<ObjetoInventario> Tesoro;
+
+    private List<ObjetoInventario> objetosMagicosVinculados;
+    /**CARACTERISTICAS*/
+
+    private int valFuerza;
+    private int modFuerza;
+    private boolean competenciaFuerza;
+
+    private int valDestreza;
+    private int modDestreza;
+    private boolean competenciaDestreza;
+
+    private int valConstitucion;
+    private int modConstitucion;
+    private boolean competenciaConstitucion;
+
+    private int valInteligencia;
+    private int modInteligencia;
+    private boolean competenciaInteligencia;
+
+    private int valSabiduria;
+    private int modSabiduria;
+    private boolean competenciaSabiduria;
+
+    private int valCarisma;
+    private int modCarisma;
+    private boolean competenciaCarisma;
+
+    /**HABILIDADAES*/
+
+    private int atletismo;
+    private boolean competenciaAtletismo;
+
+    private int acrobacias;
+    private boolean competenciaAcrobacias;
+
+    private int juegoDeManos;
+    private boolean competenciaJDM;
+
+    private int sigilo;
+    private boolean competenciaSigilo;
+
+    private int cArcano;
+    private boolean competenciaCArcano;
+
+    private int historia;
+    private boolean competenciaHistoria;
+
+    private int investigacion;
+    private boolean competenciaInvestigacion;
+
+    private int naturaleza;
+    private boolean competenciaNaturaleza;
+
+    private int religion;
+    private boolean competenciaReligion;
+
+    private int medicina;
+    private boolean competenciaMedicina;
+
+    private int percepcion;
+    private boolean competenciaPercepcion;
+
+    private int perspicacia;
+    private boolean competenciaPerspicacia;
+
+    private int supervivencia;
+    private boolean competenciaSupervivencia;
+
+    private int tConAnimales;
+    private boolean competenciaTCA;
+
+    private int enganyo;
+    private boolean competenciaEnganyo;
+
+    private int interpretacion;
+    private boolean competenciaInterpretacion;
+
+    private int intimidacion;
+    private boolean competenciaIntimidacion;
+
+    private int persuasion;
+    private boolean competenciaPersuasion;
+
+    /**HECHIZOS*/
+
+    private List<Hechizo> trucos;
+
+    private List<Hechizo> hNivel1;
+
+    private List<Hechizo> hNivel2;
+
+    private List<Hechizo> hNivel3;
+
+    private List<Hechizo> hNivel4;
+
+    private List<Hechizo> hNivel5;
+
+    private List<Hechizo> hNivel6;
+
+    private List<Hechizo> hNivel7;
+
+    private List<Hechizo> hNivel8;
+
+    private List<Hechizo> hNivel9;
+
+    /***/
 
     private List<Arma> armas;
 
@@ -99,111 +216,47 @@ public class Personaje implements Parcelable {
     static int contador = 1;
 
 
-    public Personaje(String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String trandondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int cArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, Dinero dinero, Inventario inventario, Caracteristicas caracteristicas, Habilidades habilidades, Hechizos hechizos, List<Arma> armas, List<RasgoOCompetencia> rasgos, List<RasgoOCompetencia> competencias) {
-
-        this.id = contador++;
-        this.nombrePersonaje = nombrePersonaje;
-        this.clase = clase;
-        this.raza = raza;
-        this.alinemiento = alinemiento;
-        this.nivel = nivel;
-        this.puntosnXP = puntosnXP;
-        this.transfondo = trandondo;
-        this.dadosDeGolpe = dadosDeGolpe;
-        this.bonCompetencia = bonCompetencia;
-        this.iniciativa = iniciativa;
-        this.cArmadura = cArmadura;
-        this.velocidad = velocidad;
-        this.pgMaximos = pgMaximos;
-        this.pgActuales = pgActuales;
-        this.percepcionPasiva = percepcionPasiva;
-        this.dinero = dinero;
-        this.inventario = inventario;
-        this.caracteristicas = caracteristicas;
-        this.habilidades = habilidades;
-        this.hechizos = hechizos;
-        this.armas = armas;
-        this.rasgos = rasgos;
-        this.competencias = competencias;
-    }
-
-    public Personaje(int id, String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String trandondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int cArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, Dinero dinero, Inventario inventario, Caracteristicas caracteristicas, Habilidades habilidades, Hechizos hechizos, List<Arma> armas, List<RasgoOCompetencia> rasgos, List<RasgoOCompetencia> competencias) {
-
-        this.id = id;
-        this.nombrePersonaje = nombrePersonaje;
-        this.clase = clase;
-        this.raza = raza;
-        this.alinemiento = alinemiento;
-        this.nivel = nivel;
-        this.puntosnXP = puntosnXP;
-        this.transfondo = trandondo;
-        this.dadosDeGolpe = dadosDeGolpe;
-        this.bonCompetencia = bonCompetencia;
-        this.iniciativa = iniciativa;
-        this.cArmadura = cArmadura;
-        this.velocidad = velocidad;
-        this.pgMaximos = pgMaximos;
-        this.pgActuales = pgActuales;
-        this.percepcionPasiva = percepcionPasiva;
-        this.dinero = dinero;
-        this.inventario = inventario;
-        this.caracteristicas = caracteristicas;
-        this.habilidades = habilidades;
-        this.hechizos = hechizos;
-        this.armas = armas;
-        this.rasgos = rasgos;
-        this.competencias = competencias;
-    }
-
-    public Personaje() {
-        dinero = new Dinero();
-        inventario = new Inventario();
-        caracteristicas = new Caracteristicas();
-        habilidades = new Habilidades();
-        hechizos = new Hechizos();
-    }
-
     public void setValorCaracteristicas(int fuerza, int destreza, int constitucion, int inteligencia, int sabiduria, int carisma, int bonCompetencia) {
-        caracteristicas.setValFuerza(fuerza);
-        caracteristicas.setValDestreza(destreza);
-        caracteristicas.setValConstitucion(constitucion);
-        caracteristicas.setValInteligencia(inteligencia);
-        caracteristicas.setValSabiduria(sabiduria);
-        caracteristicas.setValCarisma(carisma);
+        setValFuerza(fuerza);
+        setValDestreza(destreza);
+        setValConstitucion(constitucion);
+        setValInteligencia(inteligencia);
+        setValSabiduria(sabiduria);
+        setValCarisma(carisma);
         setModCaracteristica();
         this.bonCompetencia = bonCompetencia;
     }
 
     public void setModCaracteristica() {
-        caracteristicas.setModFuerza(calcularMod(caracteristicas.getValFuerza(), caracteristicas.isCompetenciaFuerza()));
-        habilidades.setAtletismo(calcularMod(caracteristicas.getValFuerza(), habilidades.isCompetenciaAtletismo()));
+        setModFuerza(calcularMod(getValFuerza(), isCompetenciaFuerza()));
+        setAtletismo(calcularMod(getValFuerza(), isCompetenciaAtletismo()));
 
-        caracteristicas.setModDestreza(calcularMod(caracteristicas.getValDestreza(), caracteristicas.isCompetenciaDestreza()));
-        habilidades.setAcrobacias(calcularMod(caracteristicas.getValDestreza(), habilidades.isCompetenciaAcrobacias()));
-        habilidades.setJuegoDeManos(calcularMod(caracteristicas.getValDestreza(), habilidades.isCompetenciaJDM()));
-        habilidades.setSigilo(calcularMod(caracteristicas.getValDestreza(), habilidades.isCompetenciaSigilo()));
+        setModDestreza(calcularMod(getValDestreza(), isCompetenciaDestreza()));
+        setAcrobacias(calcularMod(getValDestreza(), isCompetenciaAcrobacias()));
+        setJuegoDeManos(calcularMod(getValDestreza(), isCompetenciaJDM()));
+        setSigilo(calcularMod(getValDestreza(), isCompetenciaSigilo()));
 
-        caracteristicas.setModConstitucion(calcularMod(caracteristicas.getValConstitucion(), caracteristicas.isCompetenciaConstitucion()));
+        setModConstitucion(calcularMod(getValConstitucion(), isCompetenciaConstitucion()));
 
-        caracteristicas.setModInteligencia(calcularMod(caracteristicas.getValInteligencia(), caracteristicas.isCompetenciaInteligencia()));
-        habilidades.setcArcano(calcularMod(caracteristicas.getValInteligencia(), habilidades.isCompetenciaCArcano()));
-        habilidades.setHistoria(calcularMod(caracteristicas.getValInteligencia(), habilidades.isCompetenciaHistoria()));
-        habilidades.setInvestigacion(calcularMod(caracteristicas.getValInteligencia(), habilidades.isCompetenciaInvestigacion()));
-        habilidades.setNaturaleza(calcularMod(caracteristicas.getValInteligencia(), habilidades.isCompetenciaNaturaleza()));
-        habilidades.setReligion(calcularMod(caracteristicas.getValInteligencia(), habilidades.isCompetenciaReligion()));
+        setModInteligencia(calcularMod(getValInteligencia(), isCompetenciaInteligencia()));
+        setcArcano(calcularMod(getValInteligencia(), isCompetenciaCArcano()));
+        setHistoria(calcularMod(getValInteligencia(), isCompetenciaHistoria()));
+        setInvestigacion(calcularMod(getValInteligencia(), isCompetenciaInvestigacion()));
+        setNaturaleza(calcularMod(getValInteligencia(), isCompetenciaNaturaleza()));
+        setReligion(calcularMod(getValInteligencia(), isCompetenciaReligion()));
 
-        caracteristicas.setModSabiduria(calcularMod(caracteristicas.getValSabiduria(), caracteristicas.isCompetenciaSabiduria()));
-        habilidades.setMedicina(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaMedicina()));
-        habilidades.setPercepcion(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaPercepcion()));
-        habilidades.setPerspicacia(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaPerspicacia()));
-        habilidades.setSupervivencia(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaSupervivencia()));
-        habilidades.settConAnimales(calcularMod(caracteristicas.getValSabiduria(), habilidades.isCompetenciaTCA()));
+        setModSabiduria(calcularMod(getValSabiduria(), isCompetenciaSabiduria()));
+        setMedicina(calcularMod(getValSabiduria(), isCompetenciaMedicina()));
+        setPercepcion(calcularMod(getValSabiduria(), isCompetenciaPercepcion()));
+        setPerspicacia(calcularMod(getValSabiduria(), isCompetenciaPerspicacia()));
+        setSupervivencia(calcularMod(getValSabiduria(), isCompetenciaSupervivencia()));
+        settConAnimales(calcularMod(getValSabiduria(), isCompetenciaTCA()));
 
-        caracteristicas.setModCarisma(calcularMod(caracteristicas.getValCarisma(), caracteristicas.isCompetenciaCarisma()));
-        habilidades.setEnganyo(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaEnganyo()));
-        habilidades.setInterpretacion(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaInterpretacion()));
-        habilidades.setIntimidacion(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaIntimidacion()));
-        habilidades.setPersuasion(calcularMod(caracteristicas.getValCarisma(), habilidades.isCompetenciaPersuasion()));
+        setModCarisma(calcularMod(getValCarisma(), isCompetenciaCarisma()));
+        setEnganyo(calcularMod(getValCarisma(), isCompetenciaEnganyo()));
+        setInterpretacion(calcularMod(getValCarisma(), isCompetenciaInterpretacion()));
+        setIntimidacion(calcularMod(getValCarisma(), isCompetenciaIntimidacion()));
+        setPersuasion(calcularMod(getValCarisma(), isCompetenciaPersuasion()));
 
 
     }
@@ -250,14 +303,6 @@ public class Personaje implements Parcelable {
         return resultado;
     }
 
-    public String getNombrePersonaje() {
-        return nombrePersonaje;
-    }
-
-    public void setNombrePersonaje(String nombrePersonaje) {
-        this.nombrePersonaje = nombrePersonaje;
-    }
-
 
     public int getId() {
         return id;
@@ -265,6 +310,14 @@ public class Personaje implements Parcelable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNombrePersonaje() {
+        return nombrePersonaje;
+    }
+
+    public void setNombrePersonaje(String nombrePersonaje) {
+        this.nombrePersonaje = nombrePersonaje;
     }
 
     public String getClase() {
@@ -379,20 +432,580 @@ public class Personaje implements Parcelable {
         this.percepcionPasiva = percepcionPasiva;
     }
 
-    public Dinero getDinero() {
-        return dinero;
+    public int getCobre() {
+        return cobre;
     }
 
-    public void setDinero(Dinero dinero) {
-        this.dinero = dinero;
+    public void setCobre(int cobre) {
+        this.cobre = cobre;
     }
 
-    public Inventario getInventario() {
-        return inventario;
+    public int getPlata() {
+        return plata;
     }
 
-    public void setInventario(Inventario inventario) {
-        this.inventario = inventario;
+    public void setPlata(int plata) {
+        this.plata = plata;
+    }
+
+    public int getElectrum() {
+        return electrum;
+    }
+
+    public void setElectrum(int electrum) {
+        this.electrum = electrum;
+    }
+
+    public int getOro() {
+        return oro;
+    }
+
+    public void setOro(int oro) {
+        this.oro = oro;
+    }
+
+    public int getPlatinum() {
+        return platinum;
+    }
+
+    public void setPlatinum(int platinum) {
+        this.platinum = platinum;
+    }
+
+    public List<ObjetoInventario> getEquipo() {
+        return Equipo;
+    }
+
+    public void setEquipo(List<ObjetoInventario> equipo) {
+        Equipo = equipo;
+    }
+
+    public List<ObjetoInventario> getTesoro() {
+        return Tesoro;
+    }
+
+    public void setTesoro(List<ObjetoInventario> tesoro) {
+        Tesoro = tesoro;
+    }
+
+    public List<ObjetoInventario> getObjetosMagicosVinculados() {
+        return objetosMagicosVinculados;
+    }
+
+    public void setObjetosMagicosVinculados(List<ObjetoInventario> objetosMagicosVinculados) {
+        this.objetosMagicosVinculados = objetosMagicosVinculados;
+    }
+
+    public int getValFuerza() {
+        return valFuerza;
+    }
+
+    public void setValFuerza(int valFuerza) {
+        this.valFuerza = valFuerza;
+    }
+
+    public int getModFuerza() {
+        return modFuerza;
+    }
+
+    public void setModFuerza(int modFuerza) {
+        this.modFuerza = modFuerza;
+    }
+
+    public boolean isCompetenciaFuerza() {
+        return competenciaFuerza;
+    }
+
+    public void setCompetenciaFuerza(boolean competenciaFuerza) {
+        this.competenciaFuerza = competenciaFuerza;
+    }
+
+    public int getValDestreza() {
+        return valDestreza;
+    }
+
+    public void setValDestreza(int valDestreza) {
+        this.valDestreza = valDestreza;
+    }
+
+    public int getModDestreza() {
+        return modDestreza;
+    }
+
+    public void setModDestreza(int modDestreza) {
+        this.modDestreza = modDestreza;
+    }
+
+    public boolean isCompetenciaDestreza() {
+        return competenciaDestreza;
+    }
+
+    public void setCompetenciaDestreza(boolean competenciaDestreza) {
+        this.competenciaDestreza = competenciaDestreza;
+    }
+
+    public int getValConstitucion() {
+        return valConstitucion;
+    }
+
+    public void setValConstitucion(int valConstitucion) {
+        this.valConstitucion = valConstitucion;
+    }
+
+    public int getModConstitucion() {
+        return modConstitucion;
+    }
+
+    public void setModConstitucion(int modConstitucion) {
+        this.modConstitucion = modConstitucion;
+    }
+
+    public boolean isCompetenciaConstitucion() {
+        return competenciaConstitucion;
+    }
+
+    public void setCompetenciaConstitucion(boolean competenciaConstitucion) {
+        this.competenciaConstitucion = competenciaConstitucion;
+    }
+
+    public int getValInteligencia() {
+        return valInteligencia;
+    }
+
+    public void setValInteligencia(int valInteligencia) {
+        this.valInteligencia = valInteligencia;
+    }
+
+    public int getModInteligencia() {
+        return modInteligencia;
+    }
+
+    public void setModInteligencia(int modInteligencia) {
+        this.modInteligencia = modInteligencia;
+    }
+
+    public boolean isCompetenciaInteligencia() {
+        return competenciaInteligencia;
+    }
+
+    public void setCompetenciaInteligencia(boolean competenciaInteligencia) {
+        this.competenciaInteligencia = competenciaInteligencia;
+    }
+
+    public int getValSabiduria() {
+        return valSabiduria;
+    }
+
+    public void setValSabiduria(int valSabiduria) {
+        this.valSabiduria = valSabiduria;
+    }
+
+    public int getModSabiduria() {
+        return modSabiduria;
+    }
+
+    public void setModSabiduria(int modSabiduria) {
+        this.modSabiduria = modSabiduria;
+    }
+
+    public boolean isCompetenciaSabiduria() {
+        return competenciaSabiduria;
+    }
+
+    public void setCompetenciaSabiduria(boolean competenciaSabiduria) {
+        this.competenciaSabiduria = competenciaSabiduria;
+    }
+
+    public int getValCarisma() {
+        return valCarisma;
+    }
+
+    public void setValCarisma(int valCarisma) {
+        this.valCarisma = valCarisma;
+    }
+
+    public int getModCarisma() {
+        return modCarisma;
+    }
+
+    public void setModCarisma(int modCarisma) {
+        this.modCarisma = modCarisma;
+    }
+
+    public boolean isCompetenciaCarisma() {
+        return competenciaCarisma;
+    }
+
+    public void setCompetenciaCarisma(boolean competenciaCarisma) {
+        this.competenciaCarisma = competenciaCarisma;
+    }
+
+    public int getAtletismo() {
+        return atletismo;
+    }
+
+    public void setAtletismo(int atletismo) {
+        this.atletismo = atletismo;
+    }
+
+    public boolean isCompetenciaAtletismo() {
+        return competenciaAtletismo;
+    }
+
+    public void setCompetenciaAtletismo(boolean competenciaAtletismo) {
+        this.competenciaAtletismo = competenciaAtletismo;
+    }
+
+    public int getAcrobacias() {
+        return acrobacias;
+    }
+
+    public void setAcrobacias(int acrobacias) {
+        this.acrobacias = acrobacias;
+    }
+
+    public boolean isCompetenciaAcrobacias() {
+        return competenciaAcrobacias;
+    }
+
+    public void setCompetenciaAcrobacias(boolean competenciaAcrobacias) {
+        this.competenciaAcrobacias = competenciaAcrobacias;
+    }
+
+    public int getJuegoDeManos() {
+        return juegoDeManos;
+    }
+
+    public void setJuegoDeManos(int juegoDeManos) {
+        this.juegoDeManos = juegoDeManos;
+    }
+
+    public boolean isCompetenciaJDM() {
+        return competenciaJDM;
+    }
+
+    public void setCompetenciaJDM(boolean competenciaJDM) {
+        this.competenciaJDM = competenciaJDM;
+    }
+
+    public int getSigilo() {
+        return sigilo;
+    }
+
+    public void setSigilo(int sigilo) {
+        this.sigilo = sigilo;
+    }
+
+    public boolean isCompetenciaSigilo() {
+        return competenciaSigilo;
+    }
+
+    public void setCompetenciaSigilo(boolean competenciaSigilo) {
+        this.competenciaSigilo = competenciaSigilo;
+    }
+
+    public int getcArcano() {
+        return cArcano;
+    }
+
+    public void setcArcano(int cArcano) {
+        this.cArcano = cArcano;
+    }
+
+    public boolean isCompetenciaCArcano() {
+        return competenciaCArcano;
+    }
+
+    public void setCompetenciaCArcano(boolean competenciaCArcano) {
+        this.competenciaCArcano = competenciaCArcano;
+    }
+
+    public int getHistoria() {
+        return historia;
+    }
+
+    public void setHistoria(int historia) {
+        this.historia = historia;
+    }
+
+    public boolean isCompetenciaHistoria() {
+        return competenciaHistoria;
+    }
+
+    public void setCompetenciaHistoria(boolean competenciaHistoria) {
+        this.competenciaHistoria = competenciaHistoria;
+    }
+
+    public int getInvestigacion() {
+        return investigacion;
+    }
+
+    public void setInvestigacion(int investigacion) {
+        this.investigacion = investigacion;
+    }
+
+    public boolean isCompetenciaInvestigacion() {
+        return competenciaInvestigacion;
+    }
+
+    public void setCompetenciaInvestigacion(boolean competenciaInvestigacion) {
+        this.competenciaInvestigacion = competenciaInvestigacion;
+    }
+
+    public int getNaturaleza() {
+        return naturaleza;
+    }
+
+    public void setNaturaleza(int naturaleza) {
+        this.naturaleza = naturaleza;
+    }
+
+    public boolean isCompetenciaNaturaleza() {
+        return competenciaNaturaleza;
+    }
+
+    public void setCompetenciaNaturaleza(boolean competenciaNaturaleza) {
+        this.competenciaNaturaleza = competenciaNaturaleza;
+    }
+
+    public int getReligion() {
+        return religion;
+    }
+
+    public void setReligion(int religion) {
+        this.religion = religion;
+    }
+
+    public boolean isCompetenciaReligion() {
+        return competenciaReligion;
+    }
+
+    public void setCompetenciaReligion(boolean competenciaReligion) {
+        this.competenciaReligion = competenciaReligion;
+    }
+
+    public int getMedicina() {
+        return medicina;
+    }
+
+    public void setMedicina(int medicina) {
+        this.medicina = medicina;
+    }
+
+    public boolean isCompetenciaMedicina() {
+        return competenciaMedicina;
+    }
+
+    public void setCompetenciaMedicina(boolean competenciaMedicina) {
+        this.competenciaMedicina = competenciaMedicina;
+    }
+
+    public int getPercepcion() {
+        return percepcion;
+    }
+
+    public void setPercepcion(int percepcion) {
+        this.percepcion = percepcion;
+    }
+
+    public boolean isCompetenciaPercepcion() {
+        return competenciaPercepcion;
+    }
+
+    public void setCompetenciaPercepcion(boolean competenciaPercepcion) {
+        this.competenciaPercepcion = competenciaPercepcion;
+    }
+
+    public int getPerspicacia() {
+        return perspicacia;
+    }
+
+    public void setPerspicacia(int perspicacia) {
+        this.perspicacia = perspicacia;
+    }
+
+    public boolean isCompetenciaPerspicacia() {
+        return competenciaPerspicacia;
+    }
+
+    public void setCompetenciaPerspicacia(boolean competenciaPerspicacia) {
+        this.competenciaPerspicacia = competenciaPerspicacia;
+    }
+
+    public int getSupervivencia() {
+        return supervivencia;
+    }
+
+    public void setSupervivencia(int supervivencia) {
+        this.supervivencia = supervivencia;
+    }
+
+    public boolean isCompetenciaSupervivencia() {
+        return competenciaSupervivencia;
+    }
+
+    public void setCompetenciaSupervivencia(boolean competenciaSupervivencia) {
+        this.competenciaSupervivencia = competenciaSupervivencia;
+    }
+
+    public int gettConAnimales() {
+        return tConAnimales;
+    }
+
+    public void settConAnimales(int tConAnimales) {
+        this.tConAnimales = tConAnimales;
+    }
+
+    public boolean isCompetenciaTCA() {
+        return competenciaTCA;
+    }
+
+    public void setCompetenciaTCA(boolean competenciaTCA) {
+        this.competenciaTCA = competenciaTCA;
+    }
+
+    public int getEnganyo() {
+        return enganyo;
+    }
+
+    public void setEnganyo(int enganyo) {
+        this.enganyo = enganyo;
+    }
+
+    public boolean isCompetenciaEnganyo() {
+        return competenciaEnganyo;
+    }
+
+    public void setCompetenciaEnganyo(boolean competenciaEnganyo) {
+        this.competenciaEnganyo = competenciaEnganyo;
+    }
+
+    public int getInterpretacion() {
+        return interpretacion;
+    }
+
+    public void setInterpretacion(int interpretacion) {
+        this.interpretacion = interpretacion;
+    }
+
+    public boolean isCompetenciaInterpretacion() {
+        return competenciaInterpretacion;
+    }
+
+    public void setCompetenciaInterpretacion(boolean competenciaInterpretacion) {
+        this.competenciaInterpretacion = competenciaInterpretacion;
+    }
+
+    public int getIntimidacion() {
+        return intimidacion;
+    }
+
+    public void setIntimidacion(int intimidacion) {
+        this.intimidacion = intimidacion;
+    }
+
+    public boolean isCompetenciaIntimidacion() {
+        return competenciaIntimidacion;
+    }
+
+    public void setCompetenciaIntimidacion(boolean competenciaIntimidacion) {
+        this.competenciaIntimidacion = competenciaIntimidacion;
+    }
+
+    public int getPersuasion() {
+        return persuasion;
+    }
+
+    public void setPersuasion(int persuasion) {
+        this.persuasion = persuasion;
+    }
+
+    public boolean isCompetenciaPersuasion() {
+        return competenciaPersuasion;
+    }
+
+    public void setCompetenciaPersuasion(boolean competenciaPersuasion) {
+        this.competenciaPersuasion = competenciaPersuasion;
+    }
+
+    public List<Hechizo> getTrucos() {
+        return trucos;
+    }
+
+    public void setTrucos(List<Hechizo> trucos) {
+        this.trucos = trucos;
+    }
+
+    public List<Hechizo> gethNivel1() {
+        return hNivel1;
+    }
+
+    public void sethNivel1(List<Hechizo> hNivel1) {
+        this.hNivel1 = hNivel1;
+    }
+
+    public List<Hechizo> gethNivel2() {
+        return hNivel2;
+    }
+
+    public void sethNivel2(List<Hechizo> hNivel2) {
+        this.hNivel2 = hNivel2;
+    }
+
+    public List<Hechizo> gethNivel3() {
+        return hNivel3;
+    }
+
+    public void sethNivel3(List<Hechizo> hNivel3) {
+        this.hNivel3 = hNivel3;
+    }
+
+    public List<Hechizo> gethNivel4() {
+        return hNivel4;
+    }
+
+    public void sethNivel4(List<Hechizo> hNivel4) {
+        this.hNivel4 = hNivel4;
+    }
+
+    public List<Hechizo> gethNivel5() {
+        return hNivel5;
+    }
+
+    public void sethNivel5(List<Hechizo> hNivel5) {
+        this.hNivel5 = hNivel5;
+    }
+
+    public List<Hechizo> gethNivel6() {
+        return hNivel6;
+    }
+
+    public void sethNivel6(List<Hechizo> hNivel6) {
+        this.hNivel6 = hNivel6;
+    }
+
+    public List<Hechizo> gethNivel7() {
+        return hNivel7;
+    }
+
+    public void sethNivel7(List<Hechizo> hNivel7) {
+        this.hNivel7 = hNivel7;
+    }
+
+    public List<Hechizo> gethNivel8() {
+        return hNivel8;
+    }
+
+    public void sethNivel8(List<Hechizo> hNivel8) {
+        this.hNivel8 = hNivel8;
+    }
+
+    public List<Hechizo> gethNivel9() {
+        return hNivel9;
+    }
+
+    public void sethNivel9(List<Hechizo> hNivel9) {
+        this.hNivel9 = hNivel9;
     }
 
     public List<Arma> getArmas() {
@@ -401,30 +1014,6 @@ public class Personaje implements Parcelable {
 
     public void setArmas(List<Arma> armas) {
         this.armas = armas;
-    }
-
-    public Caracteristicas getCaracteristicas() {
-        return caracteristicas;
-    }
-
-    public void setCaracteristicas(Caracteristicas caracteristicas) {
-        this.caracteristicas = caracteristicas;
-    }
-
-    public Habilidades getHabilidades() {
-        return habilidades;
-    }
-
-    public void setHabilidades(Habilidades habilidades) {
-        this.habilidades = habilidades;
-    }
-
-    public Hechizos getHechizos() {
-        return hechizos;
-    }
-
-    public void setHechizos(Hechizos hechizos) {
-        this.hechizos = hechizos;
     }
 
     public List<RasgoOCompetencia> getRasgos() {
@@ -467,11 +1056,78 @@ public class Personaje implements Parcelable {
         dest.writeInt(this.pgMaximos);
         dest.writeInt(this.pgActuales);
         dest.writeInt(this.percepcionPasiva);
-        //dest.writeParcelable(this.dinero, flags);
-        //dest.writeParcelable(this.inventario, flags);
-        //dest.writeParcelable(this.caracteristicas, flags);
-        //dest.writeParcelable(this.habilidades, flags);
-        //dest.writeParcelable(this.hechizos, flags);
+        dest.writeInt(this.cobre);
+        dest.writeInt(this.plata);
+        dest.writeInt(this.electrum);
+        dest.writeInt(this.oro);
+        dest.writeInt(this.platinum);
+        dest.writeList(this.Equipo);
+        dest.writeList(this.Tesoro);
+        dest.writeList(this.objetosMagicosVinculados);
+        dest.writeInt(this.valFuerza);
+        dest.writeInt(this.modFuerza);
+        dest.writeByte(this.competenciaFuerza ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.valDestreza);
+        dest.writeInt(this.modDestreza);
+        dest.writeByte(this.competenciaDestreza ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.valConstitucion);
+        dest.writeInt(this.modConstitucion);
+        dest.writeByte(this.competenciaConstitucion ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.valInteligencia);
+        dest.writeInt(this.modInteligencia);
+        dest.writeByte(this.competenciaInteligencia ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.valSabiduria);
+        dest.writeInt(this.modSabiduria);
+        dest.writeByte(this.competenciaSabiduria ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.valCarisma);
+        dest.writeInt(this.modCarisma);
+        dest.writeByte(this.competenciaCarisma ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.atletismo);
+        dest.writeByte(this.competenciaAtletismo ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.acrobacias);
+        dest.writeByte(this.competenciaAcrobacias ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.juegoDeManos);
+        dest.writeByte(this.competenciaJDM ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.sigilo);
+        dest.writeByte(this.competenciaSigilo ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.cArcano);
+        dest.writeByte(this.competenciaCArcano ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.historia);
+        dest.writeByte(this.competenciaHistoria ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.investigacion);
+        dest.writeByte(this.competenciaInvestigacion ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.naturaleza);
+        dest.writeByte(this.competenciaNaturaleza ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.religion);
+        dest.writeByte(this.competenciaReligion ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.medicina);
+        dest.writeByte(this.competenciaMedicina ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.percepcion);
+        dest.writeByte(this.competenciaPercepcion ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.perspicacia);
+        dest.writeByte(this.competenciaPerspicacia ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.supervivencia);
+        dest.writeByte(this.competenciaSupervivencia ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.tConAnimales);
+        dest.writeByte(this.competenciaTCA ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.enganyo);
+        dest.writeByte(this.competenciaEnganyo ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.interpretacion);
+        dest.writeByte(this.competenciaInterpretacion ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.intimidacion);
+        dest.writeByte(this.competenciaIntimidacion ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.persuasion);
+        dest.writeByte(this.competenciaPersuasion ? (byte) 1 : (byte) 0);
+        dest.writeList(this.trucos);
+        dest.writeList(this.hNivel1);
+        dest.writeList(this.hNivel2);
+        dest.writeList(this.hNivel3);
+        dest.writeList(this.hNivel4);
+        dest.writeList(this.hNivel5);
+        dest.writeList(this.hNivel6);
+        dest.writeList(this.hNivel7);
+        dest.writeList(this.hNivel8);
+        dest.writeList(this.hNivel9);
         dest.writeList(this.armas);
         dest.writeList(this.rasgos);
         dest.writeList(this.competencias);
@@ -494,17 +1150,100 @@ public class Personaje implements Parcelable {
         this.pgMaximos = source.readInt();
         this.pgActuales = source.readInt();
         this.percepcionPasiva = source.readInt();
-        this.dinero = source.readParcelable(Dinero.class.getClassLoader());
-        this.inventario = source.readParcelable(Inventario.class.getClassLoader());
-        this.caracteristicas = source.readParcelable(Caracteristicas.class.getClassLoader());
-        this.habilidades = source.readParcelable(Habilidades.class.getClassLoader());
-        this.hechizos = source.readParcelable(Hechizos.class.getClassLoader());
+        this.cobre = source.readInt();
+        this.plata = source.readInt();
+        this.electrum = source.readInt();
+        this.oro = source.readInt();
+        this.platinum = source.readInt();
+        this.Equipo = new ArrayList<ObjetoInventario>();
+        source.readList(this.Equipo, ObjetoInventario.class.getClassLoader());
+        this.Tesoro = new ArrayList<ObjetoInventario>();
+        source.readList(this.Tesoro, ObjetoInventario.class.getClassLoader());
+        this.objetosMagicosVinculados = new ArrayList<ObjetoInventario>();
+        source.readList(this.objetosMagicosVinculados, ObjetoInventario.class.getClassLoader());
+        this.valFuerza = source.readInt();
+        this.modFuerza = source.readInt();
+        this.competenciaFuerza = source.readByte() != 0;
+        this.valDestreza = source.readInt();
+        this.modDestreza = source.readInt();
+        this.competenciaDestreza = source.readByte() != 0;
+        this.valConstitucion = source.readInt();
+        this.modConstitucion = source.readInt();
+        this.competenciaConstitucion = source.readByte() != 0;
+        this.valInteligencia = source.readInt();
+        this.modInteligencia = source.readInt();
+        this.competenciaInteligencia = source.readByte() != 0;
+        this.valSabiduria = source.readInt();
+        this.modSabiduria = source.readInt();
+        this.competenciaSabiduria = source.readByte() != 0;
+        this.valCarisma = source.readInt();
+        this.modCarisma = source.readInt();
+        this.competenciaCarisma = source.readByte() != 0;
+        this.atletismo = source.readInt();
+        this.competenciaAtletismo = source.readByte() != 0;
+        this.acrobacias = source.readInt();
+        this.competenciaAcrobacias = source.readByte() != 0;
+        this.juegoDeManos = source.readInt();
+        this.competenciaJDM = source.readByte() != 0;
+        this.sigilo = source.readInt();
+        this.competenciaSigilo = source.readByte() != 0;
+        this.cArcano = source.readInt();
+        this.competenciaCArcano = source.readByte() != 0;
+        this.historia = source.readInt();
+        this.competenciaHistoria = source.readByte() != 0;
+        this.investigacion = source.readInt();
+        this.competenciaInvestigacion = source.readByte() != 0;
+        this.naturaleza = source.readInt();
+        this.competenciaNaturaleza = source.readByte() != 0;
+        this.religion = source.readInt();
+        this.competenciaReligion = source.readByte() != 0;
+        this.medicina = source.readInt();
+        this.competenciaMedicina = source.readByte() != 0;
+        this.percepcion = source.readInt();
+        this.competenciaPercepcion = source.readByte() != 0;
+        this.perspicacia = source.readInt();
+        this.competenciaPerspicacia = source.readByte() != 0;
+        this.supervivencia = source.readInt();
+        this.competenciaSupervivencia = source.readByte() != 0;
+        this.tConAnimales = source.readInt();
+        this.competenciaTCA = source.readByte() != 0;
+        this.enganyo = source.readInt();
+        this.competenciaEnganyo = source.readByte() != 0;
+        this.interpretacion = source.readInt();
+        this.competenciaInterpretacion = source.readByte() != 0;
+        this.intimidacion = source.readInt();
+        this.competenciaIntimidacion = source.readByte() != 0;
+        this.persuasion = source.readInt();
+        this.competenciaPersuasion = source.readByte() != 0;
+        this.trucos = new ArrayList<Hechizo>();
+        source.readList(this.trucos, Hechizo.class.getClassLoader());
+        this.hNivel1 = new ArrayList<Hechizo>();
+        source.readList(this.hNivel1, Hechizo.class.getClassLoader());
+        this.hNivel2 = new ArrayList<Hechizo>();
+        source.readList(this.hNivel2, Hechizo.class.getClassLoader());
+        this.hNivel3 = new ArrayList<Hechizo>();
+        source.readList(this.hNivel3, Hechizo.class.getClassLoader());
+        this.hNivel4 = new ArrayList<Hechizo>();
+        source.readList(this.hNivel4, Hechizo.class.getClassLoader());
+        this.hNivel5 = new ArrayList<Hechizo>();
+        source.readList(this.hNivel5, Hechizo.class.getClassLoader());
+        this.hNivel6 = new ArrayList<Hechizo>();
+        source.readList(this.hNivel6, Hechizo.class.getClassLoader());
+        this.hNivel7 = new ArrayList<Hechizo>();
+        source.readList(this.hNivel7, Hechizo.class.getClassLoader());
+        this.hNivel8 = new ArrayList<Hechizo>();
+        source.readList(this.hNivel8, Hechizo.class.getClassLoader());
+        this.hNivel9 = new ArrayList<Hechizo>();
+        source.readList(this.hNivel9, Hechizo.class.getClassLoader());
         this.armas = new ArrayList<Arma>();
         source.readList(this.armas, Arma.class.getClassLoader());
         this.rasgos = new ArrayList<RasgoOCompetencia>();
         source.readList(this.rasgos, RasgoOCompetencia.class.getClassLoader());
         this.competencias = new ArrayList<RasgoOCompetencia>();
         source.readList(this.competencias, RasgoOCompetencia.class.getClassLoader());
+    }
+
+    public Personaje() {
     }
 
     protected Personaje(Parcel in) {
@@ -524,11 +1263,91 @@ public class Personaje implements Parcelable {
         this.pgMaximos = in.readInt();
         this.pgActuales = in.readInt();
         this.percepcionPasiva = in.readInt();
-        this.dinero = in.readParcelable(Dinero.class.getClassLoader());
-        this.inventario = in.readParcelable(Inventario.class.getClassLoader());
-        this.caracteristicas = in.readParcelable(Caracteristicas.class.getClassLoader());
-        this.habilidades = in.readParcelable(Habilidades.class.getClassLoader());
-        this.hechizos = in.readParcelable(Hechizos.class.getClassLoader());
+        this.cobre = in.readInt();
+        this.plata = in.readInt();
+        this.electrum = in.readInt();
+        this.oro = in.readInt();
+        this.platinum = in.readInt();
+        this.Equipo = new ArrayList<ObjetoInventario>();
+        in.readList(this.Equipo, ObjetoInventario.class.getClassLoader());
+        this.Tesoro = new ArrayList<ObjetoInventario>();
+        in.readList(this.Tesoro, ObjetoInventario.class.getClassLoader());
+        this.objetosMagicosVinculados = new ArrayList<ObjetoInventario>();
+        in.readList(this.objetosMagicosVinculados, ObjetoInventario.class.getClassLoader());
+        this.valFuerza = in.readInt();
+        this.modFuerza = in.readInt();
+        this.competenciaFuerza = in.readByte() != 0;
+        this.valDestreza = in.readInt();
+        this.modDestreza = in.readInt();
+        this.competenciaDestreza = in.readByte() != 0;
+        this.valConstitucion = in.readInt();
+        this.modConstitucion = in.readInt();
+        this.competenciaConstitucion = in.readByte() != 0;
+        this.valInteligencia = in.readInt();
+        this.modInteligencia = in.readInt();
+        this.competenciaInteligencia = in.readByte() != 0;
+        this.valSabiduria = in.readInt();
+        this.modSabiduria = in.readInt();
+        this.competenciaSabiduria = in.readByte() != 0;
+        this.valCarisma = in.readInt();
+        this.modCarisma = in.readInt();
+        this.competenciaCarisma = in.readByte() != 0;
+        this.atletismo = in.readInt();
+        this.competenciaAtletismo = in.readByte() != 0;
+        this.acrobacias = in.readInt();
+        this.competenciaAcrobacias = in.readByte() != 0;
+        this.juegoDeManos = in.readInt();
+        this.competenciaJDM = in.readByte() != 0;
+        this.sigilo = in.readInt();
+        this.competenciaSigilo = in.readByte() != 0;
+        this.cArcano = in.readInt();
+        this.competenciaCArcano = in.readByte() != 0;
+        this.historia = in.readInt();
+        this.competenciaHistoria = in.readByte() != 0;
+        this.investigacion = in.readInt();
+        this.competenciaInvestigacion = in.readByte() != 0;
+        this.naturaleza = in.readInt();
+        this.competenciaNaturaleza = in.readByte() != 0;
+        this.religion = in.readInt();
+        this.competenciaReligion = in.readByte() != 0;
+        this.medicina = in.readInt();
+        this.competenciaMedicina = in.readByte() != 0;
+        this.percepcion = in.readInt();
+        this.competenciaPercepcion = in.readByte() != 0;
+        this.perspicacia = in.readInt();
+        this.competenciaPerspicacia = in.readByte() != 0;
+        this.supervivencia = in.readInt();
+        this.competenciaSupervivencia = in.readByte() != 0;
+        this.tConAnimales = in.readInt();
+        this.competenciaTCA = in.readByte() != 0;
+        this.enganyo = in.readInt();
+        this.competenciaEnganyo = in.readByte() != 0;
+        this.interpretacion = in.readInt();
+        this.competenciaInterpretacion = in.readByte() != 0;
+        this.intimidacion = in.readInt();
+        this.competenciaIntimidacion = in.readByte() != 0;
+        this.persuasion = in.readInt();
+        this.competenciaPersuasion = in.readByte() != 0;
+        this.trucos = new ArrayList<Hechizo>();
+        in.readList(this.trucos, Hechizo.class.getClassLoader());
+        this.hNivel1 = new ArrayList<Hechizo>();
+        in.readList(this.hNivel1, Hechizo.class.getClassLoader());
+        this.hNivel2 = new ArrayList<Hechizo>();
+        in.readList(this.hNivel2, Hechizo.class.getClassLoader());
+        this.hNivel3 = new ArrayList<Hechizo>();
+        in.readList(this.hNivel3, Hechizo.class.getClassLoader());
+        this.hNivel4 = new ArrayList<Hechizo>();
+        in.readList(this.hNivel4, Hechizo.class.getClassLoader());
+        this.hNivel5 = new ArrayList<Hechizo>();
+        in.readList(this.hNivel5, Hechizo.class.getClassLoader());
+        this.hNivel6 = new ArrayList<Hechizo>();
+        in.readList(this.hNivel6, Hechizo.class.getClassLoader());
+        this.hNivel7 = new ArrayList<Hechizo>();
+        in.readList(this.hNivel7, Hechizo.class.getClassLoader());
+        this.hNivel8 = new ArrayList<Hechizo>();
+        in.readList(this.hNivel8, Hechizo.class.getClassLoader());
+        this.hNivel9 = new ArrayList<Hechizo>();
+        in.readList(this.hNivel9, Hechizo.class.getClassLoader());
         this.armas = new ArrayList<Arma>();
         in.readList(this.armas, Arma.class.getClassLoader());
         this.rasgos = new ArrayList<RasgoOCompetencia>();
