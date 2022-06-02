@@ -34,7 +34,8 @@ public interface PersonajeDAO {
     int countPersonaje();
 
 
-    @Query("SELECT * FROM  " + Personaje.TABLE_NAME + " ORDER BY " +
+    @Query(
+            "SELECT * FROM  " + Personaje.TABLE_NAME + " ORDER BY " +
             "CASE WHEN :sort_by = 'id'   AND :sort = 'ASC' THEN _id END ASC, " +
             "CASE WHEN :sort_by = 'id'   AND :sort = 'DESC' THEN _id END DESC"
     )

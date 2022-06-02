@@ -6,5 +6,13 @@
     <string name="title_principal">Principal</string>
     <string name="nombre">Nombre</string>
     <string name="Vacio" />
+    <string name="title_activity_crear">CrearActivity</string>
+    <string name="title_activity_editar">EditarActivity</string>
+    <string name="borrar">Borrar Personaje</string>
+    <string name="mensageBorrar">¿Esta seguro de borrar el personaje</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="nomber">Nombre</string>
+    <string name="clase">Clase</string>
+    <string name="ejemplon2d">17</string>
 
 </resources>

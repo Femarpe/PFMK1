@@ -19,8 +19,15 @@ import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.habilidadesYCompeten
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(tableName = Personaje.TABLE_NAME,
-        indices = {@Index(value = {Personaje.ID}, unique = true)})
+@Entity(
+        tableName = Personaje.TABLE_NAME,
+        indices = {
+                @Index(
+                        value = {Personaje.ID},
+                        unique = true
+                )
+        }
+)
 public class Personaje implements Parcelable {
 
     public static final String TABLE_NAME = "personage";
@@ -234,8 +241,31 @@ public class Personaje implements Parcelable {
     }
 
     @Ignore
+    public Personaje(String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String transfondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int claseArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, int cobre, int plata, int electrum, int oro, int platinum) {
+        this.id = contador++;
+        this.nombrePersonaje = nombrePersonaje;
+        this.clase = clase;
+        this.raza = raza;
+        this.alinemiento = alinemiento;
+        this.nivel = nivel;
+        this.puntosnXP = puntosnXP;
+        this.transfondo = transfondo;
+        this.dadosDeGolpe = dadosDeGolpe;
+        this.bonCompetencia = bonCompetencia;
+        this.iniciativa = iniciativa;
+        this.claseArmadura = claseArmadura;
+        this.velocidad = velocidad;
+        this.pgMaximos = pgMaximos;
+        this.pgActuales = pgActuales;
+        this.percepcionPasiva = percepcionPasiva;
+        this.cobre = cobre;
+        this.plata = plata;
+        this.electrum = electrum;
+        this.oro = oro;
+        this.platinum = platinum;
+    }
 
-
+    @Ignore
     public Personaje(int id, String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String transfondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int claseArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, int cobre, int plata, int electrum, int oro, int platinum, int valFuerza, int modFuerza, boolean competenciaFuerza, int valDestreza, int modDestreza, boolean competenciaDestreza, int valConstitucion, int modConstitucion, boolean competenciaConstitucion, int valInteligencia, int modInteligencia, boolean competenciaInteligencia, int valSabiduria, int modSabiduria, boolean competenciaSabiduria, int valCarisma, int modCarisma, boolean competenciaCarisma, int atletismo, boolean competenciaAtletismo, int acrobacias, boolean competenciaAcrobacias, int juegoDeManos, boolean competenciaJDM, int sigilo, boolean competenciaSigilo, int conocimientoArcano, boolean competenciaCArcano, int historia, boolean competenciaHistoria, int investigacion, boolean competenciaInvestigacion, int naturaleza, boolean competenciaNaturaleza, int religion, boolean competenciaReligion, int medicina, boolean competenciaMedicina, int percepcion, boolean competenciaPercepcion, int perspicacia, boolean competenciaPerspicacia, int supervivencia, boolean competenciaSupervivencia, int tratoConAnimales, boolean competenciaTCA, int enganyo, boolean competenciaEnganyo, int interpretacion, boolean competenciaInterpretacion, int intimidacion, boolean competenciaIntimidacion, int persuasion, boolean competenciaPersuasion) {
         this.id = id;
         this.nombrePersonaje = nombrePersonaje;

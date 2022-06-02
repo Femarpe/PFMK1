@@ -1,6 +1,7 @@
 package net.iesseveroochoa.fernandomartinezperez.pfmk1.repository;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -9,6 +10,7 @@ import net.iesseveroochoa.fernandomartinezperez.pfmk1.database.PersonajeRoomData
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Personaje;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class PersonajeRepository {
     private static volatile PersonajeRepository INSTANCE;
@@ -20,9 +22,7 @@ public class PersonajeRepository {
     public static PersonajeRepository getInstance(Application application) {
         if (INSTANCE == null) {
             synchronized (PersonajeRepository.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = new PersonajeRepository(application);
-                }
+                INSTANCE = new PersonajeRepository(application);
             }
         }
         return INSTANCE;
@@ -30,8 +30,12 @@ public class PersonajeRepository {
 
     private PersonajeRepository(Application application) {
         PersonajeRoomDatabase db = PersonajeRoomDatabase.getDatabase(application);
-        personajeDAO = db.personajeDAO();
-        mAllPersonajes = personajeDAO.getAllPersonaje();
+        this.personajeDAO = db.personajeDAO();
+        this.mAllPersonajes = personajeDAO.getAllPersonaje();
+    }
+
+    public PersonajeDAO getDao() {
+        return this.personajeDAO;
     }
 
     public LiveData<List<Personaje>> getAllPersonajes() {

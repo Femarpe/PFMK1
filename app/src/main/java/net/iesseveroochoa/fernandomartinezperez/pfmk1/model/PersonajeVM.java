@@ -28,34 +28,27 @@ public class PersonajeVM extends AndroidViewModel {
 
     public PersonajeVM(@NonNull Application application) {
         super(application);
-        repository = PersonajeRepository.getInstance(application);
-        listLiveData = repository.getAllPersonajes();
-        condicionBusquedaLiveData = new MutableLiveData<String>();
-        condicionBusquedaLiveData.setValue("");
-
+        this.repository = PersonajeRepository.getInstance(application);
+        this.listLiveData = repository.getAllPersonajes();
+        this.condicionBusquedaLiveData = new MutableLiveData<String>();
+        this.condicionBusquedaLiveData.setValue("");
     }
-
 
     public LiveData<List<Personaje>> getListaPersonajes() {
         return listLiveData;
     }
 
-
-
     /**
      * Este metodo sirve para añadir un personaje
      */
     public void addPersonaje(Personaje personaje) {
-
         repository.insert(personaje);
-
-
     }
 
     /**
      * Este metodo sirve para borrar una personaje
      */
-    public void delDia(Personaje personaje) {
+    public void delPersonaje(Personaje personaje) {
         repository.delete(personaje);
 
     }

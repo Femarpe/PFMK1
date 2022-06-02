@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.iesseveroochoa.fernandomartinezperez.pfmk1">
+    package="net.iesseveroochoa.fernandomartinezperez.pfmk1" >
 
     <application
         android:allowBackup="true"
@@ -8,11 +8,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PFMK1">
+        android:theme="@style/Theme.PFMK1" >
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.EditarActivity"
+            android:exported="false"
+            android:label="@string/title_activity_editar" />
+        <activity
+            android:name=".CrearActivity"
+            android:exported="false"
+            android:label="@string/title_activity_crear" />
+        <activity
+            android:name=".ActivityEditar"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MainActivity"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

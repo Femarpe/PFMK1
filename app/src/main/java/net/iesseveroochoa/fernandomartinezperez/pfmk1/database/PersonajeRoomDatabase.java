@@ -1,6 +1,7 @@
 package net.iesseveroochoa.fernandomartinezperez.pfmk1.database;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.*;
@@ -12,13 +13,12 @@ import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Personaje;
 import java.util.concurrent.*;
 
 @Database(entities = {Personaje.class}, version = 1)
-
 public abstract class PersonajeRoomDatabase extends RoomDatabase {
 
     public abstract PersonajeDAO personajeDAO();
 
     private static volatile PersonajeRoomDatabase INSTANCE;
-    private static final int NUMBER_OF_THREADS = 400;
+    private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
@@ -26,9 +26,10 @@ public abstract class PersonajeRoomDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (PersonajeRoomDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    PersonajeRoomDatabase.class,
-                                    "Personaje_database")
+                    INSTANCE = Room.databaseBuilder(
+                            context.getApplicationContext(),
+                            PersonajeRoomDatabase.class,
+                            "Personaje_database")
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -40,6 +41,7 @@ public abstract class PersonajeRoomDatabase extends RoomDatabase {
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            Log.i("DB", "OnCreate"); //TODO Borrar
             super.onCreate(db);
 
             databaseWriteExecutor.execute(() -> {
@@ -78,6 +80,7 @@ public abstract class PersonajeRoomDatabase extends RoomDatabase {
 
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            Log.i("DB", "OnOpen"); //TODO Borrar
             super.onOpen(db);
         }
     };
