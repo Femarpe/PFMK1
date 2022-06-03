@@ -41,7 +41,11 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
 
             holder.tvResumen.setText(personaje.getNombrePersonaje());
             holder.tvTecnico.setText(personaje.getClase());
-
+            holder.tvRaza.setText(personaje.getRaza());
+            holder.tvAlinemiento.setText(personaje.getAlinemiento());
+            holder.tvTransfondo.setText(personaje.getTransfondo());
+            holder.tvClaseArmadura.setText(String.valueOf(personaje.getClaseArmadura()));
+            holder.tvNivel.setText(personaje.getNivel());
 
         }
     }
@@ -57,18 +61,25 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
 
         private TextView tvResumen;
         private TextView tvTecnico;
-        private ImageView ivEstado;
-        private ImageView ivEditar;
-        private ImageView ivBorrar;
+        private TextView tvRaza;
+        private TextView tvAlinemiento;
+        private TextView tvTransfondo;
+        private TextView tvClaseArmadura;
+        private TextView tvNivel;
+
         private ConstraintLayout clItem;
 
         private PersonajeViewHolder(@NonNull View itemView) {
             super(itemView);
             tvResumen = itemView.findViewById(R.id.tvNombre);
             tvTecnico = itemView.findViewById(R.id.tvClase);
-            ivEstado = itemView.findViewById(R.id.ivClase);
+            tvRaza = itemView.findViewById(R.id.tvRaza);
+            tvAlinemiento = itemView.findViewById(R.id.tvAlineamiento);
+            tvTransfondo = itemView.findViewById(R.id.tvTransfondo);
+            tvClaseArmadura = itemView.findViewById(R.id.tvClaseArmadura);
+            tvNivel = itemView.findViewById(R.id.tvNivel);
 
-            /*
+                    /*
             ivBorrar = itemView.findViewById(R.id.ivBorrar);
             ivBorrar.setOnClickListener(v -> listenerBorrar.onItemClickBorrar(
                     personajes.get(PersonajeViewHolder.this.getAbsoluteAdapterPosition())));

@@ -1,5 +1,6 @@
 package net.iesseveroochoa.fernandomartinezperez.pfmk1.ui;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         personajeVM = new ViewModelProvider(this).get(PersonajeVM.class);
         personajeVM.getListaPersonajes().observe(this, adapter::setPersonajes);
 
+
+
         int orientation = getResources().getConfiguration().orientation;
         //una fila
         if (orientation == Configuration.ORIENTATION_PORTRAIT)
@@ -68,9 +71,10 @@ public class MainActivity extends AppCompatActivity {
             rvPersonajes.setLayoutManager(new GridLayoutManager(this, 2));
 
         fabnPersonaje.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, EditarActivity.class);
+            /*Intent intent = new Intent(MainActivity.this, EditarActivity.class);
             int codigoNuevoPersonaje = OPTION_REQUEST_CREAR;
-            startActivityForResult(intent, codigoNuevoPersonaje);
+            startActivityForResult(intent, codigoNuevoPersonaje);*/
+            addEjemplo();
         });
 
         adapter.setOnItemClickBorrarListener(personaje -> {
@@ -118,28 +122,53 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, OPTION_REQUEST_EDITAR);
         });
     }
-        private void addEjemplo () {
-            personajeVM.addPersonaje(new Personaje(
-                    001,
-                    "Euris",
-                    "Guerrero Arcano",
-                    "Semielfo",
-                    "Legal Neutral",
-                    "7",
-                    "100/700",
-                    "Oficial",
-                    "4d10",
-                    1,
-                    2,
-                    3,
-                    5,
-                    6,
-                    7,
-                    8,
-                    10,
-                    20,
-                    30,
-                    40,
-                    50));
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Personaje personaje = data.getParcelableExtra(EXTRA_PERSONAJE);
+
+            if (requestCode == OPTION_REQUEST_CREAR) {
+
+
+                personajeVM.addPersonaje(personaje);
+
+            } else if (requestCode == OPTION_REQUEST_EDITAR) {
+
+                personajeVM.addPersonaje(personaje);
+            }
         }
     }
+
+    private void addEjemplo() {
+
+        Personaje personaje = new Personaje(
+                "Euris",
+                "Guerrero Arcano",
+                "Semielfo",
+                "Legal Neutral",
+                "7",
+                "100/700",
+                "Oficial",
+                "4d10",
+                1,
+                2,
+                3,
+                5,
+                6,
+                7,
+                8,
+                10,
+                20,
+                30,
+                40,
+                50);
+
+        personaje.setValorCaracteristicas(16, 14, 14, 15, 12, 12, 3);
+
+        personajeVM.addPersonaje(personaje);
+    }
+}

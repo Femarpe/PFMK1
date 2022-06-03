@@ -14,5 +14,17 @@
     <string name="nomber">Nombre</string>
     <string name="clase">Clase</string>
     <string name="ejemplon2d">17</string>
+    <string name="ejemplo1d">7</string>
+    <string name="raza">Raza</string>
+    <string name="alineamiento">Alineamiento</string>
+    <string name="tramsfondo">Transfondo</string>
+    <string name="fuerza">Fuerza</string>
+    <string name="destreza">Destreza</string>
+    <string name="constitucion">Constitucion</string>
+    <string name="inteligencia">Inteligencia</string>
+    <string name="sabiduria">Sabiduria</string>
+    <string name="carisma">Carisma</string>
+    <string name="valor">Valor:</string>
+    <string name="modificador">Modificador:</string>
 
 </resources>
