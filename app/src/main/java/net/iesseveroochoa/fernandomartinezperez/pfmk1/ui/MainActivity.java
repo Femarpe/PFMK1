@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import net.iesseveroochoa.fernandomartinezperez.pfmk1.CrearEditarActivity;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.R;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.adapter.PersonajeAdapter;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.databinding.ActivityMainBinding;
@@ -60,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
         personajeVM = new ViewModelProvider(this).get(PersonajeVM.class);
         personajeVM.getListaPersonajes().observe(this, adapter::setPersonajes);
-
 
 
         int orientation = getResources().getConfiguration().orientation;
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         adapter.setOnItemClickEditarListener(personaje -> {
-            Intent intent = new Intent(MainActivity.this, EditarActivity.class);
+            Intent intent = new Intent(MainActivity.this, CrearEditarActivity.class);
             intent.putExtra(EXTRA_PERSONAJE, personaje);
             startActivityForResult(intent, OPTION_REQUEST_EDITAR);
         });
@@ -154,13 +154,13 @@ public class MainActivity extends AppCompatActivity {
                 "100/700",
                 "Oficial",
                 "4d10",
-                1,
-                2,
                 3,
-                5,
-                6,
-                7,
-                8,
+                2,
+                17,
+                40,
+                73,
+                73,
+                14,
                 10,
                 20,
                 30,

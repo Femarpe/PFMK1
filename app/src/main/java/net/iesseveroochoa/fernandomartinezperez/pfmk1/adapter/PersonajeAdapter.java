@@ -1,16 +1,16 @@
 package net.iesseveroochoa.fernandomartinezperez.pfmk1.adapter;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.R;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Personaje;
@@ -34,6 +34,7 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
         return new PersonajeViewHolder(itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull PersonajeViewHolder holder, int position) {
         if (personajes != null) {
@@ -47,6 +48,51 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
             holder.tvClaseArmadura.setText(String.valueOf(personaje.getClaseArmadura()));
             holder.tvNivel.setText(personaje.getNivel());
 
+
+
+
+            holder.tvValorFuerza.setText("Valor:" + String.valueOf(personaje.getValFuerza()));
+            holder.tvModFuerza.setText("Modificador:" + String.valueOf(personaje.getModFuerza()));
+
+            holder.tvValorDestreza.setText("Valor:" + String.valueOf(personaje.getValDestreza()));
+            holder.tvModDestreza.setText("Modificador:" + String.valueOf(personaje.getModDestreza()));
+
+            holder.tvValorConstitucion.setText("Valor:" + String.valueOf(personaje.getValConstitucion()));
+            holder.tvModConstitucion.setText("Modificador:" + String.valueOf(personaje.getModConstitucion()));
+
+            holder.tvValorInteligencia.setText("Valor:" + String.valueOf(personaje.getValInteligencia()));
+            holder.tvModInteligencia.setText("Modificador:" + String.valueOf(personaje.getModInteligencia()));
+
+            holder.tvValorSabiduria.setText("Valor:" + String.valueOf(personaje.getValSabiduria()));
+            holder.tvModSabiduria.setText("Modificador:" + String.valueOf(personaje.getModSabiduria()));
+
+            holder.tvValorCarisma.setText("Valor:" + String.valueOf(personaje.getValCarisma()));
+            holder.tvModCarisma.setText("Modificador:" + String.valueOf(personaje.getModCarisma()));
+
+            holder.tvIniciativa.setText(String.valueOf(personaje.getIniciativa()));
+            holder.tvVida.setText(String.valueOf(personaje.getPgMaximos()));
+
+
+            /*
+            holder.tvValorFuerza.setText(R.string.valor + String.valueOf(personaje.getValFuerza()));
+            holder.tvModFuerza.setText(R.string.modificador + String.valueOf(personaje.getModFuerza()));
+
+            holder.tvValorDestreza.setText(R.string.valor + String.valueOf(personaje.getValDestreza()));
+            holder.tvModDestreza.setText(R.string.modificador + String.valueOf(personaje.getModDestreza()));
+
+            holder.tvValorConstitucion.setText(R.string.valor + String.valueOf(personaje.getValConstitucion()));
+            holder.tvModConstitucion.setText(R.string.modificador + String.valueOf(personaje.getModConstitucion()));
+
+            holder.tvValorInteligencia.setText(R.string.valor + String.valueOf(personaje.getValInteligencia()));
+            holder.tvModInteligencia.setText(R.string.modificador + String.valueOf(personaje.getModInteligencia()));
+
+            holder.tvValorSabiduria.setText(R.string.valor + String.valueOf(personaje.getValSabiduria()));
+            holder.tvModSabiduria.setText(R.string.modificador + String.valueOf(personaje.getModSabiduria()));
+
+            holder.tvValorCarisma.setText(R.string.valor + String.valueOf(personaje.getValCarisma()));
+            holder.tvModCarisma.setText(R.string.modificador + String.valueOf(personaje.getModCarisma()));
+            */
+
         }
     }
 
@@ -59,13 +105,35 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
 
     public class PersonajeViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvResumen;
-        private TextView tvTecnico;
-        private TextView tvRaza;
-        private TextView tvAlinemiento;
-        private TextView tvTransfondo;
-        private TextView tvClaseArmadura;
-        private TextView tvNivel;
+        private final TextView tvResumen;
+        private final TextView tvTecnico;
+        private final TextView tvRaza;
+        private final TextView tvAlinemiento;
+        private final TextView tvTransfondo;
+        private final TextView tvClaseArmadura;
+        private final TextView tvNivel;
+
+        private final TextView tvValorFuerza;
+        private final TextView tvModFuerza;
+
+        private final TextView tvValorDestreza;
+        private final TextView tvModDestreza;
+
+        private final TextView tvValorConstitucion;
+        private final TextView tvModConstitucion;
+
+        private final TextView tvValorInteligencia;
+        private final TextView tvModInteligencia;
+
+        private final TextView tvValorSabiduria;
+        private final TextView tvModSabiduria;
+
+        private final TextView tvValorCarisma;
+        private final TextView tvModCarisma;
+
+        private final TextView tvIniciativa;
+        private final TextView tvVida;
+
 
         private ConstraintLayout clItem;
 
@@ -79,6 +147,26 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
             tvClaseArmadura = itemView.findViewById(R.id.tvClaseArmadura);
             tvNivel = itemView.findViewById(R.id.tvNivel);
 
+            tvValorFuerza = itemView.findViewById(R.id.tvValorFuerza);
+            tvModFuerza = itemView.findViewById(R.id.tvModFuerza);
+
+            tvValorDestreza = itemView.findViewById(R.id.tvValorDestreza);
+            tvModDestreza = itemView.findViewById(R.id.tvModDestreza);
+
+            tvValorConstitucion = itemView.findViewById(R.id.tvValorConstitucion);
+            tvModConstitucion = itemView.findViewById(R.id.tvModConstitucion);
+
+            tvValorInteligencia = itemView.findViewById(R.id.tvValorInteligencia);
+            tvModInteligencia = itemView.findViewById(R.id.tvModInteligencia);
+
+            tvValorSabiduria = itemView.findViewById(R.id.tvValorSabiduria);
+            tvModSabiduria = itemView.findViewById(R.id.tvModSabiduria);
+
+            tvValorCarisma = itemView.findViewById(R.id.tvValorCarisma);
+            tvModCarisma = itemView.findViewById(R.id.tvModCarisma);
+
+            tvIniciativa = itemView.findViewById(R.id.tvIniciativa);
+            tvVida = itemView.findViewById(R.id.tvVida);
                     /*
             ivBorrar = itemView.findViewById(R.id.ivBorrar);
             ivBorrar.setOnClickListener(v -> listenerBorrar.onItemClickBorrar(
