@@ -11,7 +11,6 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Inventario.Arma;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Inventario.ObjetoInventario;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Magia.Hechizo;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.habilidadesYCompetencias.RasgoOCompetencia;
@@ -23,15 +22,15 @@ import java.util.List;
         tableName = Personaje.TABLE_NAME,
         indices = {
                 @Index(
-                        value = {Personaje.ID},
+                        value = {Personaje.IDPERSONAJE},
                         unique = true
                 )
         }
 )
 public class Personaje implements Parcelable {
 
-    public static final String TABLE_NAME = "personage";
-    public static final String ID = BaseColumns._ID;
+    public static final String TABLE_NAME = "personaje";
+    public static final String IDPERSONAJE = "idPersonaje";
 
 
     /**
@@ -40,8 +39,8 @@ public class Personaje implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    @ColumnInfo(name = ID)
-    private int id;
+    @ColumnInfo(name = IDPERSONAJE)
+    private int idPersonaje;
 
     private String nombrePersonaje;
 
@@ -216,8 +215,8 @@ public class Personaje implements Parcelable {
 
     static int contador = 1;
 
-    public Personaje(int id, String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String transfondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int claseArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, int cobre, int plata, int electrum, int oro, int platinum) {
-        this.id = id;
+    public Personaje(int idPersonaje, String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String transfondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int claseArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, int cobre, int plata, int electrum, int oro, int platinum) {
+        this.idPersonaje = idPersonaje;
         this.nombrePersonaje = nombrePersonaje;
         this.clase = clase;
         this.raza = raza;
@@ -242,7 +241,7 @@ public class Personaje implements Parcelable {
 
     @Ignore
     public Personaje(String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String transfondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int claseArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, int cobre, int plata, int electrum, int oro, int platinum) {
-        this.id = contador++;
+        this.idPersonaje = contador++;
         this.nombrePersonaje = nombrePersonaje;
         this.clase = clase;
         this.raza = raza;
@@ -266,8 +265,8 @@ public class Personaje implements Parcelable {
     }
 
     @Ignore
-    public Personaje(int id, String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String transfondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int claseArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, int cobre, int plata, int electrum, int oro, int platinum, int valFuerza, int modFuerza, boolean competenciaFuerza, int valDestreza, int modDestreza, boolean competenciaDestreza, int valConstitucion, int modConstitucion, boolean competenciaConstitucion, int valInteligencia, int modInteligencia, boolean competenciaInteligencia, int valSabiduria, int modSabiduria, boolean competenciaSabiduria, int valCarisma, int modCarisma, boolean competenciaCarisma, int atletismo, boolean competenciaAtletismo, int acrobacias, boolean competenciaAcrobacias, int juegoDeManos, boolean competenciaJDM, int sigilo, boolean competenciaSigilo, int conocimientoArcano, boolean competenciaCArcano, int historia, boolean competenciaHistoria, int investigacion, boolean competenciaInvestigacion, int naturaleza, boolean competenciaNaturaleza, int religion, boolean competenciaReligion, int medicina, boolean competenciaMedicina, int percepcion, boolean competenciaPercepcion, int perspicacia, boolean competenciaPerspicacia, int supervivencia, boolean competenciaSupervivencia, int tratoConAnimales, boolean competenciaTCA, int enganyo, boolean competenciaEnganyo, int interpretacion, boolean competenciaInterpretacion, int intimidacion, boolean competenciaIntimidacion, int persuasion, boolean competenciaPersuasion) {
-        this.id = id;
+    public Personaje(int idPersonaje, String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String transfondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int claseArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, int cobre, int plata, int electrum, int oro, int platinum, int valFuerza, int modFuerza, boolean competenciaFuerza, int valDestreza, int modDestreza, boolean competenciaDestreza, int valConstitucion, int modConstitucion, boolean competenciaConstitucion, int valInteligencia, int modInteligencia, boolean competenciaInteligencia, int valSabiduria, int modSabiduria, boolean competenciaSabiduria, int valCarisma, int modCarisma, boolean competenciaCarisma, int atletismo, boolean competenciaAtletismo, int acrobacias, boolean competenciaAcrobacias, int juegoDeManos, boolean competenciaJDM, int sigilo, boolean competenciaSigilo, int conocimientoArcano, boolean competenciaCArcano, int historia, boolean competenciaHistoria, int investigacion, boolean competenciaInvestigacion, int naturaleza, boolean competenciaNaturaleza, int religion, boolean competenciaReligion, int medicina, boolean competenciaMedicina, int percepcion, boolean competenciaPercepcion, int perspicacia, boolean competenciaPerspicacia, int supervivencia, boolean competenciaSupervivencia, int tratoConAnimales, boolean competenciaTCA, int enganyo, boolean competenciaEnganyo, int interpretacion, boolean competenciaInterpretacion, int intimidacion, boolean competenciaIntimidacion, int persuasion, boolean competenciaPersuasion) {
+        this.idPersonaje = idPersonaje;
         this.nombrePersonaje = nombrePersonaje;
         this.clase = clase;
         this.raza = raza;
@@ -432,12 +431,12 @@ public class Personaje implements Parcelable {
     }
 
 
-    public int getId() {
-        return id;
+    public int getIdPersonaje() {
+        return idPersonaje;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPersonaje(int idPersonaje) {
+        this.idPersonaje = idPersonaje;
     }
 
     public String getNombrePersonaje() {
@@ -1168,7 +1167,7 @@ public class Personaje implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeInt(this.idPersonaje);
         dest.writeString(this.nombrePersonaje);
         dest.writeString(this.clase);
         dest.writeString(this.raza);
@@ -1262,7 +1261,7 @@ public class Personaje implements Parcelable {
     }
 
     public void readFromParcel(Parcel source) {
-        this.id = source.readInt();
+        this.idPersonaje = source.readInt();
         this.nombrePersonaje = source.readString();
         this.clase = source.readString();
         this.raza = source.readString();
@@ -1377,7 +1376,7 @@ public class Personaje implements Parcelable {
 
     @Ignore
     protected Personaje(Parcel in) {
-        this.id = in.readInt();
+        this.idPersonaje = in.readInt();
         this.nombrePersonaje = in.readString();
         this.clase = in.readString();
         this.raza = in.readString();

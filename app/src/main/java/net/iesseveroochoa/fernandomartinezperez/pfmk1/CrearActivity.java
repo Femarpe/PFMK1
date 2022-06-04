@@ -37,9 +37,6 @@ public class CrearActivity extends AppCompatActivity {
     private EditText etCarisma;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +48,38 @@ public class CrearActivity extends AppCompatActivity {
         etAlinemiento = findViewById(R.id.etAlinemiento);
         etNivel = findViewById(R.id.etNivel);
         etPuntosXP = findViewById(R.id.etPuntosXP);
-
-
+        etTransfondo = findViewById(R.id.etTransfondo);
+        etDadosGolpe = findViewById(R.id.etDadosGolpe);
+        etBonCom = findViewById(R.id.etBonCom);
+        etIniciativa = findViewById(R.id.etIniciativa);
+        etClasArmadura = findViewById(R.id.etClasArmadura);
+        etVelocidad = findViewById(R.id.etVelocidad);
+        etPuntosGolpeMax = findViewById(R.id.etPuntosGolpeMax);
+        etPuntosGolpeAtc = findViewById(R.id.etPuntosGolpeAtc);
+        etPercepPasiva = findViewById(R.id.etPercepPasiva);
+        etFuerza = findViewById(R.id.etFuerza);
+        etDestreza = findViewById(R.id.etDestreza);
+        etConstitucion = findViewById(R.id.etConstitucion);
+        etInteligencia = findViewById(R.id.etInteligencia);
+        etSabiduria = findViewById(R.id.etSabiduria);
+        etCarisma = findViewById(R.id.etCarisma);
 
         Intent intent = new Intent();
 
         personajeAEditar = getIntent().getParcelableExtra(EXTRA_PERSONAJE);
         if (personajeAEditar != null) {
+        etNombre.setText(personajeAEditar.getNombrePersonaje());
+        etClase.setText(personajeAEditar.getClase());
+        etRaza.setText(personajeAEditar.getRaza());
+
+
+
+
+
+
+
+
+
 
         } else {
             esEdicion = false;

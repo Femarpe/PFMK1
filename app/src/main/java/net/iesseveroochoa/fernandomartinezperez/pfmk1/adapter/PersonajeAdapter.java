@@ -13,18 +13,39 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.R;
+import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Arma;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Personaje;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.PersonajeViewHolder> {
     private List<Personaje> personajes;
+
+    private List<Arma> armas;
+
     private OnItemClickBorrarListener listenerBorrar;
     private OnItemClickEditarListener listenerEditar;
 
     public void setPersonajes(List<Personaje> personajes) {
         this.personajes = personajes;
         notifyDataSetChanged();
+    }
+
+    public void setArmas(List<Arma> armas) {
+        this.armas = armas;
+        List<Arma>armasPorPersonaje;
+        if (personajes != null && armas != null) {
+            for (int i = 0; i < personajes.size(); i++) {
+                armasPorPersonaje = new ArrayList<>();
+                for (int j = 0; j < armas.size(); j++) {
+                    if (personajes.get(i).getIdPersonaje() == armas.get(j).getFkIdPersonaje()){
+                        armasPorPersonaje.add(armas.get(j));
+                    }
+                }
+                personajes.get(i).setArmas(armasPorPersonaje);
+            }
+        }
     }
 
     @NonNull
@@ -47,8 +68,6 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
             holder.tvTransfondo.setText(personaje.getTransfondo());
             holder.tvClaseArmadura.setText(String.valueOf(personaje.getClaseArmadura()));
             holder.tvNivel.setText(personaje.getNivel());
-
-
 
 
             holder.tvValorFuerza.setText("Valor:" + String.valueOf(personaje.getValFuerza()));

@@ -6,8 +6,10 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
+import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Arma;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Personaje;
 
 import java.util.List;
@@ -26,7 +28,7 @@ public interface PersonajeDAO {
     @Update
     void update(Personaje personaje);
 
-    @Query("SELECT * FROM " + Personaje.TABLE_NAME + " ORDER BY _id")
+    @Query("SELECT * FROM " + Personaje.TABLE_NAME + " ORDER BY idPersonaje")
     LiveData<List<Personaje>> getAllPersonaje();
 
 
@@ -36,8 +38,8 @@ public interface PersonajeDAO {
 
     @Query(
             "SELECT * FROM  " + Personaje.TABLE_NAME + " ORDER BY " +
-            "CASE WHEN :sort_by = 'id'   AND :sort = 'ASC' THEN _id END ASC, " +
-            "CASE WHEN :sort_by = 'id'   AND :sort = 'DESC' THEN _id END DESC"
+            "CASE WHEN :sort_by = 'id'   AND :sort = 'ASC' THEN idPersonaje END ASC, " +
+            "CASE WHEN :sort_by = 'id'   AND :sort = 'DESC' THEN idPersonaje END DESC"
     )
     LiveData<List<Personaje>> getPersonajeOrderBy(String sort_by, String sort);
 

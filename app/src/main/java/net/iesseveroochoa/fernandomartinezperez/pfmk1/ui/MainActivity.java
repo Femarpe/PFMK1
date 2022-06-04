@@ -17,10 +17,13 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import net.iesseveroochoa.fernandomartinezperez.pfmk1.CrearActivity;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.CrearEditarActivity;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.R;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.adapter.PersonajeAdapter;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.databinding.ActivityMainBinding;
+import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Arma;
+import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.ArmaVM;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Personaje;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.PersonajeVM;
 
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fabnPersonaje;
     private ActivityMainBinding binding;
     PersonajeVM personajeVM;
+    ArmaVM armaVM;
     PersonajeAdapter adapter;
     private SearchView svBusqueda;
 
@@ -62,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         personajeVM = new ViewModelProvider(this).get(PersonajeVM.class);
         personajeVM.getListaPersonajes().observe(this, adapter::setPersonajes);
 
+        armaVM = new ViewModelProvider(this).get(ArmaVM.class);
+        armaVM.getListaArmas().observe(this,adapter::setArmas);
 
         int orientation = getResources().getConfiguration().orientation;
         //una fila
@@ -71,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
             rvPersonajes.setLayoutManager(new GridLayoutManager(this, 2));
 
         fabnPersonaje.setOnClickListener(view -> {
-            /*Intent intent = new Intent(MainActivity.this, EditarActivity.class);
+            Intent intent = new Intent(MainActivity.this, CrearActivity.class);
             int codigoNuevoPersonaje = OPTION_REQUEST_CREAR;
-            startActivityForResult(intent, codigoNuevoPersonaje);*/
-            addEjemplo();
+            startActivityForResult(intent, codigoNuevoPersonaje);
+            //addEjemplo();
         });
 
         adapter.setOnItemClickBorrarListener(personaje -> {
@@ -82,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder builder =
                     new AlertDialog.Builder(MainActivity.this);
 
-            builder.setMessage(getString(R.string.mensageBorrar) + personaje.getId() + "?").setTitle(R.string.borrar)
+            builder.setMessage(getString(R.string.mensageBorrar) + personaje.getIdPersonaje() + "?").setTitle(R.string.borrar)
                     .setPositiveButton("Ok", (dialog, id) -> {
                         personajeVM.delPersonaje(personaje);
                         dialog.cancel();
@@ -117,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         adapter.setOnItemClickEditarListener(personaje -> {
-            Intent intent = new Intent(MainActivity.this, CrearEditarActivity.class);
+            Intent intent = new Intent(MainActivity.this, CrearActivity.class);
             intent.putExtra(EXTRA_PERSONAJE, personaje);
             startActivityForResult(intent, OPTION_REQUEST_EDITAR);
         });
@@ -169,6 +175,11 @@ public class MainActivity extends AppCompatActivity {
 
         personaje.setValorCaracteristicas(16, 14, 14, 15, 12, 12, 3);
 
+        Arma arma = new Arma(1,"artema","999","mucho", "destruccion");
+
+
+
         personajeVM.addPersonaje(personaje);
+        armaVM.addArma(arma);
     }
 }

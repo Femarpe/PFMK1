@@ -4,32 +4,35 @@ import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.room.*;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Arma;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Personaje;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import java.util.concurrent.*;
+@Database(entities = {Arma.class}, version = 1)
+public abstract class ArmaRoomDatabase extends RoomDatabase {
 
-@Database(entities = {Personaje.class}, version = 1)
-public abstract class PersonajeRoomDatabase extends RoomDatabase {
+    public abstract ArmaDAO armaDAO();
 
-    public abstract PersonajeDAO personajeDAO();
-
-    private static volatile PersonajeRoomDatabase INSTANCE;
+    private static volatile ArmaRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    public static PersonajeRoomDatabase getDatabase(final Context context) {
+    public static ArmaRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (PersonajeRoomDatabase.class) {
+            synchronized (ArmaRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(
-                            context.getApplicationContext(),
-                            PersonajeRoomDatabase.class,
-                            "PFMK1_Personajes")
+                                    context.getApplicationContext(),
+                                    ArmaRoomDatabase.class,
+                                    "PFMK1_Armas")
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -45,8 +48,8 @@ public abstract class PersonajeRoomDatabase extends RoomDatabase {
             super.onCreate(db);
 
             databaseWriteExecutor.execute(() -> {
-                PersonajeDAO mDao = INSTANCE.personajeDAO();
-                Personaje personaje;
+                ArmaDAO mDao = INSTANCE.armaDAO();
+                Arma arma;
             });
         }
 

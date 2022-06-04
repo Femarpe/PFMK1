@@ -454,6 +454,7 @@
         android:layout_marginBottom="8dp"
         app:cardBackgroundColor="@color/Dark_midnight_blue"
         app:cardCornerRadius="20dp"
+        app:layout_constraintBaseline_toBottomOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline44"
         app:layout_constraintStart_toStartOf="parent"
@@ -471,6 +472,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="5dp"
+                app:layout_constraintBaseline_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -488,9 +490,6 @@
 
                     <TextView
                         android:id="@+id/textView32"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -503,9 +502,6 @@
 
                     <TextView
                         android:id="@+id/tvValorFuerza6"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintStart_toStartOf="@+id/guideline4"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/valor"
@@ -537,6 +533,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="5dp"
+                app:layout_constraintBaseline_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.545"
                 app:layout_constraintStart_toStartOf="parent"
@@ -560,9 +557,6 @@
 
                     <TextView
                         android:id="@+id/textView33"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -575,9 +569,6 @@
 
                     <TextView
                         android:id="@+id/tvValorDestreza3"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintStart_toStartOf="@+id/guideline7"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/valor"
@@ -605,6 +596,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="5dp"
+                app:layout_constraintBaseline_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.545"
                 app:layout_constraintStart_toStartOf="parent"
@@ -635,9 +627,6 @@
 
                     <TextView
                         android:id="@+id/textView34"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -650,9 +639,6 @@
 
                     <TextView
                         android:id="@+id/tvValorConstitucion3"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintStart_toStartOf="@+id/guideline8"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/valor"
@@ -673,6 +659,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="5dp"
+                app:layout_constraintBaseline_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
@@ -703,9 +690,6 @@
 
                     <TextView
                         android:id="@+id/textView35"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -718,9 +702,6 @@
 
                     <TextView
                         android:id="@+id/tvValorInteligencia3"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintStart_toStartOf="@+id/guideline9"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/valor"
@@ -741,6 +722,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="5dp"
+                app:layout_constraintBaseline_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -771,9 +753,6 @@
 
                     <TextView
                         android:id="@+id/textView36"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -786,9 +765,6 @@
 
                     <TextView
                         android:id="@+id/tvValorSabiduria3"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintStart_toStartOf="@+id/guideline10"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/valor"
@@ -809,6 +785,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="5dp"
+                app:layout_constraintBaseline_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
@@ -839,9 +816,6 @@
 
                     <TextView
                         android:id="@+id/textView37"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -854,9 +828,6 @@
 
                     <TextView
                         android:id="@+id/tvValorCarisma3"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintStart_toStartOf="@+id/guideline11"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/valor"
