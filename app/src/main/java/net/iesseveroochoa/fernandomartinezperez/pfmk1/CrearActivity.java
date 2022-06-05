@@ -51,7 +51,6 @@ public class CrearActivity extends AppCompatActivity {
     boolean tieneEspada = false;
     boolean tieneHacha = false;
     boolean tieneLanza = false;
-    boolean tieneMaza = false;
 
 
     @Override
@@ -114,6 +113,11 @@ public class CrearActivity extends AppCompatActivity {
             etSabiduria.setText(String.valueOf(personajeAEditar.getValSabiduria()));
             etCarisma.setText(String.valueOf(personajeAEditar.getValCarisma()));
 
+            tieneEspada = tieneaArmas(tieneEspada, btAddEspada, "Espada", personajeAEditar);
+            tieneHacha = tieneaArmas(tieneHacha, btAddHacha, "Hacha", personajeAEditar);
+            tieneLanza = tieneaArmas(tieneLanza, btAddLanza, "Lanza", personajeAEditar);
+
+
         } else {
             personajeAEditar = new Personaje();
             personajeAEditar.setArmas(new ArrayList<>());
@@ -121,7 +125,6 @@ public class CrearActivity extends AppCompatActivity {
             tieneEspada = false;
             tieneLanza = false;
             tieneHacha = false;
-            tieneMaza = false;
         }
 
 
@@ -158,16 +161,31 @@ public class CrearActivity extends AppCompatActivity {
              */
         });
         btAddHacha.setOnClickListener(view -> {
-            checkBotones(tieneHacha,btAddHacha,"Hacha", "5+1", "1d8", "cortante");
+            checkBotones(tieneHacha, btAddHacha, "Hacha", "5+1", "1d8", "cortante");
         });
         btAddLanza.setOnClickListener(view -> {
-            checkBotones(tieneLanza,btAddLanza,"Lanza", "7+1", "1d10", "perforante");
+            checkBotones(tieneLanza, btAddLanza, "Lanza", "7+1", "1d10", "perforante");
         });
-
 
 
         fabGuardar.setOnClickListener(v -> {
-            if (etNombre.getText().toString().isEmpty() || etNivel.getText().toString().isEmpty()) {
+            if (etNombre.getText().toString().isEmpty() ||
+                    etNivel.getText().toString().isEmpty() ||
+                    etClase.getText().toString().isEmpty() ||
+                    etRaza.getText().toString().isEmpty() ||
+                    etAlinemiento.getText().toString().isEmpty() ||
+                    etTransfondo.getText().toString().isEmpty() ||
+                    etIniciativa.getText().toString().isEmpty() ||
+                    etBonCom.getText().toString().isEmpty() ||
+                    etClasArmadura.getText().toString().isEmpty() ||
+                    etPuntosGolpeMax.getText().toString().isEmpty() ||
+                    etVelocidad.getText().toString().isEmpty() ||
+                    etFuerza.getText().toString().isEmpty() ||
+                    etDestreza.getText().toString().isEmpty() ||
+                    etConstitucion.getText().toString().isEmpty() ||
+                    etInteligencia.getText().toString().isEmpty() ||
+                    etSabiduria.getText().toString().isEmpty() ||
+                    etCarisma.getText().toString().isEmpty()) {
 
                 AlertDialog.Builder builder =
                         new AlertDialog.Builder(CrearActivity.this);
@@ -238,6 +256,23 @@ public class CrearActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean tieneaArmas(boolean tieneArma, Button button, String nombreArma, Personaje personajeAComprobar) {
+
+        tieneArma = false;
+        for (int i = 0; i < personajeAComprobar.getArmas().size(); i++) {
+            if (personajeAComprobar.getArmas().get(i).getNombre().equals(nombreArma)) {
+                tieneArma = true;
+            }
+        }
+        if (tieneArma) {
+            button.setBackgroundColor(getResources().getColor(R.color.rosa));
+        } else {
+            button.setBackgroundColor(getResources().getColor(R.color.Prussian_blue));
+
+        }
+        return tieneArma;
     }
 
     public void checkBotones(boolean tieneArma, Button button, String nombreArma, String bonoArma, String danyo, String tipodanyo) {
