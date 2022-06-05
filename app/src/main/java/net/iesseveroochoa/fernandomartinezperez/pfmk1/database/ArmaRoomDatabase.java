@@ -32,7 +32,7 @@ public abstract class ArmaRoomDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(
                                     context.getApplicationContext(),
                                     ArmaRoomDatabase.class,
-                                    "PFMK1_Armas")
+                                    "PFMK1_Armas").allowMainThreadQueries()
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }

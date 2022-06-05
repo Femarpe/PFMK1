@@ -16,6 +16,7 @@ public class ArmaRepository {
 
     private ArmaDAO armaDAO;
     private LiveData<List<Arma>> mAllArmas;
+    private LiveData<List<Arma>> mArmasPorPersonaje;
 
     //singleton
     public static ArmaRepository getInstance(Application application) {
@@ -48,6 +49,7 @@ public class ArmaRepository {
     }
 
 
+
     public void insert(Arma arma) {
         ArmaRoomDatabase.databaseWriteExecutor.execute(() -> {
             armaDAO.insert(arma);
@@ -63,6 +65,8 @@ public class ArmaRepository {
         });
     }
 
-
+    public List<Arma> getArmasPorPersonaje(int idPersonaje){
+        return armaDAO.getArmasPorPersonaje(idPersonaje);
+    }
 
 }

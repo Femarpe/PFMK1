@@ -54,5 +54,8 @@ public class ArmaVM extends AndroidViewModel {
 
     }
 
+    public List<Arma> getArmasPorPersonaje(int idPersonaje){
+        return repository.getArmasPorPersonaje(idPersonaje);
+    }
 
 }

@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         personajeVM.getListaPersonajes().observe(this, adapter::setPersonajes);
 
         armaVM = new ViewModelProvider(this).get(ArmaVM.class);
-        armaVM.getListaArmas().observe(this,adapter::setArmas);
+        armaVM.getListaArmas().observe(this, adapter::setArmas);
 
         int orientation = getResources().getConfiguration().orientation;
         //una fila
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
             builder.setMessage(getString(R.string.mensageBorrar) + personaje.getIdPersonaje() + "?").setTitle(R.string.borrar)
                     .setPositiveButton("Ok", (dialog, id) -> {
+
                         personajeVM.delPersonaje(personaje);
                         dialog.cancel();
 
@@ -123,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         adapter.setOnItemClickEditarListener(personaje -> {
+            personaje.setArmas(armaVM.getArmasPorPersonaje(personaje.getIdPersonaje()));
             Intent intent = new Intent(MainActivity.this, CrearActivity.class);
             intent.putExtra(EXTRA_PERSONAJE, personaje);
             startActivityForResult(intent, OPTION_REQUEST_EDITAR);
@@ -157,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
                 "Semielfo",
                 "Legal Neutral",
                 "7",
-                "100/700",
                 "Oficial",
                 "4d10",
                 3,
@@ -166,17 +167,11 @@ public class MainActivity extends AppCompatActivity {
                 40,
                 73,
                 73,
-                14,
-                10,
-                20,
-                30,
-                40,
-                50);
+                14);
 
         personaje.setValorCaracteristicas(16, 14, 14, 15, 12, 12, 3);
 
-        Arma arma = new Arma(1,"artema","999","mucho", "destruccion");
-
+        Arma arma = new Arma(1, "artema", "999", "mucho", "destruccion");
 
 
         personajeVM.addPersonaje(personaje);

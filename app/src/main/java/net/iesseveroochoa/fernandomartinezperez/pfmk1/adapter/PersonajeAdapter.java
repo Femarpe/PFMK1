@@ -27,6 +27,8 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
     private OnItemClickBorrarListener listenerBorrar;
     private OnItemClickEditarListener listenerEditar;
 
+
+
     public void setPersonajes(List<Personaje> personajes) {
         this.personajes = personajes;
         notifyDataSetChanged();
@@ -34,6 +36,8 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
 
     public void setArmas(List<Arma> armas) {
         this.armas = armas;
+
+        /*
         List<Arma>armasPorPersonaje;
         if (personajes != null && armas != null) {
             for (int i = 0; i < personajes.size(); i++) {
@@ -45,7 +49,7 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
                 }
                 personajes.get(i).setArmas(armasPorPersonaje);
             }
-        }
+        }*/
     }
 
     @NonNull
@@ -200,8 +204,9 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
         }
 
         public Personaje getPersonaje() {
-            return personajes.get(PersonajeViewHolder.this.
+            Personaje personaje =personajes.get(PersonajeViewHolder.this.
                     getBindingAdapterPosition());
+            return personaje;
         }
 
     }

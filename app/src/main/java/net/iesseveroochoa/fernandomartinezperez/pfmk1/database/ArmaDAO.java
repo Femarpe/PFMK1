@@ -6,7 +6,6 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import androidx.room.Update;
 
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Arma;
@@ -42,6 +41,7 @@ public interface ArmaDAO {
     )
     LiveData<List<Arma>> getArmaOrderBy(String sort_by, String sort);
 
-
+    @Query("SELECT * FROM " + Arma.TABLE_NAME + " WHERE fkIdPersonaje =:idPersonaje"  )
+    List<Arma> getArmasPorPersonaje( int idPersonaje);
 
 }

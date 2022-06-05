@@ -1,8 +1,12 @@
 package net.iesseveroochoa.fernandomartinezperez.pfmk1.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
@@ -16,7 +20,7 @@ import androidx.room.PrimaryKey;
                 )
         }
 )
-public class Arma {
+public class Arma implements Parcelable {
 
 
     public static final String TABLE_NAME = "arma";
@@ -37,10 +41,10 @@ public class Arma {
 
     private String tipodanyo;
 
+    @Ignore
     private int contador = 1;
 
     public Arma( int fkIdPersonaje, String nombre, String bono, String danyo, String tipodanyo) {
-        this.idArma = contador++;
         this.fkIdPersonaje = fkIdPersonaje;
         this.nombre = nombre;
         this.bono = bono;
@@ -48,6 +52,14 @@ public class Arma {
         this.tipodanyo = tipodanyo;
     }
 
+    @Ignore
+    public Arma(String nombre, String bono, String danyo, String tipodanyo) {
+        this.nombre = nombre;
+        this.bono = bono;
+        this.danyo = danyo;
+        this.tipodanyo = tipodanyo;
+
+    }
 
     public int getIdArma() {
         return idArma;
@@ -97,11 +109,54 @@ public class Arma {
         this.tipodanyo = tipodanyo;
     }
 
-    public int getContador() {
-        return contador;
+
+
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setContador(int contador) {
-        this.contador = contador;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.idArma);
+        dest.writeInt(this.fkIdPersonaje);
+        dest.writeString(this.nombre);
+        dest.writeString(this.bono);
+        dest.writeString(this.danyo);
+        dest.writeString(this.tipodanyo);
+        dest.writeInt(this.contador);
     }
+
+    public void readFromParcel(Parcel source) {
+        this.idArma = source.readInt();
+        this.fkIdPersonaje = source.readInt();
+        this.nombre = source.readString();
+        this.bono = source.readString();
+        this.danyo = source.readString();
+        this.tipodanyo = source.readString();
+        this.contador = source.readInt();
+    }
+
+    protected Arma(Parcel in) {
+        this.idArma = in.readInt();
+        this.fkIdPersonaje = in.readInt();
+        this.nombre = in.readString();
+        this.bono = in.readString();
+        this.danyo = in.readString();
+        this.tipodanyo = in.readString();
+        this.contador = in.readInt();
+    }
+
+    public static final Parcelable.Creator<Arma> CREATOR = new Parcelable.Creator<Arma>() {
+        @Override
+        public Arma createFromParcel(Parcel source) {
+            return new Arma(source);
+        }
+
+        @Override
+        public Arma[] newArray(int size) {
+            return new Arma[size];
+        }
+    };
 }

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PFMK1">
         <activity
+            android:name=".VerArmasActivity"
+            android:exported="false" />
+        <activity
             android:name=".CrearActivity"
             android:exported="false" />
         <activity

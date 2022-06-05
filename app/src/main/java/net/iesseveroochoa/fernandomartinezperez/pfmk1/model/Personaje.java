@@ -215,14 +215,13 @@ public class Personaje implements Parcelable {
 
     static int contador = 1;
 
-    public Personaje(int idPersonaje, String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String transfondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int claseArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, int cobre, int plata, int electrum, int oro, int platinum) {
+    public Personaje(int idPersonaje, String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String transfondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int claseArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva) {
         this.idPersonaje = idPersonaje;
         this.nombrePersonaje = nombrePersonaje;
         this.clase = clase;
         this.raza = raza;
         this.alinemiento = alinemiento;
         this.nivel = nivel;
-        this.puntosnXP = puntosnXP;
         this.transfondo = transfondo;
         this.dadosDeGolpe = dadosDeGolpe;
         this.bonCompetencia = bonCompetencia;
@@ -232,22 +231,15 @@ public class Personaje implements Parcelable {
         this.pgMaximos = pgMaximos;
         this.pgActuales = pgActuales;
         this.percepcionPasiva = percepcionPasiva;
-        this.cobre = cobre;
-        this.plata = plata;
-        this.electrum = electrum;
-        this.oro = oro;
-        this.platinum = platinum;
     }
 
     @Ignore
-    public Personaje(String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String puntosnXP, String transfondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int claseArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva, int cobre, int plata, int electrum, int oro, int platinum) {
-        this.idPersonaje = contador++;
+    public Personaje(String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String transfondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int claseArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva) {
         this.nombrePersonaje = nombrePersonaje;
         this.clase = clase;
         this.raza = raza;
         this.alinemiento = alinemiento;
         this.nivel = nivel;
-        this.puntosnXP = puntosnXP;
         this.transfondo = transfondo;
         this.dadosDeGolpe = dadosDeGolpe;
         this.bonCompetencia = bonCompetencia;
@@ -257,11 +249,6 @@ public class Personaje implements Parcelable {
         this.pgMaximos = pgMaximos;
         this.pgActuales = pgActuales;
         this.percepcionPasiva = percepcionPasiva;
-        this.cobre = cobre;
-        this.plata = plata;
-        this.electrum = electrum;
-        this.oro = oro;
-        this.platinum = platinum;
     }
 
     @Ignore

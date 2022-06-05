@@ -126,5 +126,17 @@
     <string name="pgMaximos">Puntos de golpe Maximos</string>
     <string name="pgActuales">Puntos de golpe actuales</string>
     <string name="percepcionPasiva">Percepcion pasiva</string>
+    <string name="campovacio">Campo Vacio</string>
+    <string name="cvacioMensage">Alguno de los campos esta vacio, rellenelo para guardar personaje</string>
+    <string name="addespada">Añadir Espada</string>
+    <string name="valorespada">nombre: Espada, bono: 6+1, daño: 1d6, tipo de daño: cortante</string>
+    <string name="addlanza">Añadir Lanza</string>
+    <string name="valorlanza">nombre: Lanza, bono: 7+1, daño: 1d10, tipo de daño: perforante</string>
+    <string name="addhacha">Añadir Hacha</string>
+    <string name="valorhacha">nombre: Hacha, bono: 5+1, daño: 1d8, tipo de daño: cortante</string>
+    <string name="addamaza">Añadir Maza</string>
+    <string name="valormaza">nombre: Maza, bono: 6+1, daño: 1d6, tipo de daño: contundente</string>
+    <string name="vervalarmas">Valores armas</string>
+
 
 </resources>
