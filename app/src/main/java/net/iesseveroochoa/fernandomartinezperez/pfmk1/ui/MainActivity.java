@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setContentView(R.layout.activity_main);
-        svBusqueda = findViewById(R.id.svBusqueda);
+
 
         rvPersonajes = findViewById(R.id.rvPersonajes);
 
@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
-
         personajeVM = new ViewModelProvider(this).get(PersonajeVM.class);
         personajeVM.getListaPersonajes().observe(this, adapter::setPersonajes);
 
@@ -73,10 +72,12 @@ public class MainActivity extends AppCompatActivity {
 
         int orientation = getResources().getConfiguration().orientation;
         //una fila
-        if (orientation == Configuration.ORIENTATION_PORTRAIT)
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             rvPersonajes.setLayoutManager(new LinearLayoutManager(this));
-        else
+        }
+        else {
             rvPersonajes.setLayoutManager(new GridLayoutManager(this, 2));
+        }
 
         fabnPersonaje.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, CrearActivity.class);
@@ -131,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(EXTRA_PERSONAJE, personaje);
             startActivityForResult(intent, OPTION_REQUEST_EDITAR);
         });
+
     }
 
     @Override
