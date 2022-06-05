@@ -27,6 +27,8 @@ import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.ArmaVM;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Personaje;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.PersonajeVM;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final int OPTION_REQUEST_CREAR = 1;
@@ -141,16 +143,22 @@ public class MainActivity extends AppCompatActivity {
 
             if (requestCode == OPTION_REQUEST_CREAR) {
 
-
                 personajeVM.addPersonaje(personaje);
-
+                addArmas(personaje.getArmas(),personaje.getIdPersonaje());
             } else if (requestCode == OPTION_REQUEST_EDITAR) {
 
                 personajeVM.addPersonaje(personaje);
+                addArmas(personaje.getArmas(),personaje.getIdPersonaje());
             }
         }
     }
 
+    public void addArmas(List<Arma> armas, int idPersonaje){
+        for (int i = 0; i < armas.size(); i++) {
+            armas.get(i).setFkIdPersonaje(idPersonaje);
+            armaVM.addArma(armas.get(i));
+        }
+    }
     private void addEjemplo() {
 
         Personaje personaje = new Personaje(

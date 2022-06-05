@@ -842,12 +842,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/fabGuardar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline44"
-        app:layout_constraintTop_toBottomOf="@+id/btVerArmas" >
+        app:layout_constraintTop_toBottomOf="@+id/btVerArmas">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -857,7 +855,7 @@
                 android:id="@+id/btAddEspada"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:backgroundTint="@color/Prussian_blue"
                 android:text="@string/addespada"
                 android:textSize="10sp"
@@ -887,16 +885,6 @@
                 app:layout_constraintStart_toStartOf="@+id/btAddEspada"
                 app:layout_constraintTop_toBottomOf="@+id/btAddHacha" />
 
-            <Button
-                android:id="@+id/btAddMaza"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/Prussian_blue"
-                android:text="@string/addamaza"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@+id/btAddEspada"
-                app:layout_constraintStart_toStartOf="@+id/btAddEspada"
-                app:layout_constraintTop_toBottomOf="@+id/btAddLanza" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

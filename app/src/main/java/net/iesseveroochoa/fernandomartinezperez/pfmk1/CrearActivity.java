@@ -16,6 +16,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Arma;
 import net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Personaje;
 
+import java.util.ArrayList;
+
 public class CrearActivity extends AppCompatActivity {
     private static final String EXTRA_PERSONAJE = "EXTRA_PERSONAJE";
     private Personaje personajeAEditar;
@@ -46,7 +48,6 @@ public class CrearActivity extends AppCompatActivity {
     private Button btAddEspada;
     private Button btAddHacha;
     private Button btAddLanza;
-    private Button btAddMaza;
     boolean tieneEspada = false;
     boolean tieneHacha = false;
     boolean tieneLanza = false;
@@ -86,7 +87,6 @@ public class CrearActivity extends AppCompatActivity {
         btAddEspada = findViewById(R.id.btAddEspada);
         btAddHacha = findViewById(R.id.btAddHacha);
         btAddLanza = findViewById(R.id.btAddLanza);
-        btAddMaza = findViewById(R.id.btAddMaza);
 
         Intent intent = new Intent();
 
@@ -115,6 +115,8 @@ public class CrearActivity extends AppCompatActivity {
             etCarisma.setText(String.valueOf(personajeAEditar.getValCarisma()));
 
         } else {
+            personajeAEditar = new Personaje();
+            personajeAEditar.setArmas(new ArrayList<>());
             esEdicion = false;
             tieneEspada = false;
             tieneLanza = false;
@@ -132,6 +134,8 @@ public class CrearActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         });
         btAddEspada.setOnClickListener(view -> {
+            checkBotones(tieneEspada, btAddEspada, "Espada", "6+1", "1d6", "cortante");
+            /*
             Arma armaABorrar = null;
             tieneEspada = false;
             for (int i = 0; i < personajeAEditar.getArmas().size(); i++) {
@@ -151,43 +155,15 @@ public class CrearActivity extends AppCompatActivity {
                 btAddEspada.setBackgroundColor(getResources().getColor(R.color.Prussian_blue));
 
             }
+             */
         });
         btAddHacha.setOnClickListener(view -> {
-            for (int i = 0; i < personajeAEditar.getArmas().size(); i++) {
-                if (personajeAEditar.getArmas().get(i).getNombre().equals("Hacha")) {
-                    personajeAEditar.getArmas().remove(personajeAEditar.getArmas().get(i));
-                    tieneHacha = false;
-                }
-            }
-            if (!tieneHacha) {
-                personajeAEditar.getArmas().add(new Arma(
-                        "Hacha", "5+1", "1d8", "cortante"));
-            }
+            checkBotones(tieneHacha,btAddHacha,"Hacha", "5+1", "1d8", "cortante");
         });
         btAddLanza.setOnClickListener(view -> {
-            for (int i = 0; i < personajeAEditar.getArmas().size(); i++) {
-                if (personajeAEditar.getArmas().get(i).getNombre().equals("Lanza")) {
-                    personajeAEditar.getArmas().remove(personajeAEditar.getArmas().get(i));
-                    tieneLanza = false;
-                }
-            }
-            if (!tieneLanza) {
-                personajeAEditar.getArmas().add(new Arma(
-                        "Lanza", "7+1", "1d10", "perforante"));
-            }
+            checkBotones(tieneLanza,btAddLanza,"Lanza", "7+1", "1d10", "perforante");
         });
-        btAddMaza.setOnClickListener(view -> {
-            for (int i = 0; i < personajeAEditar.getArmas().size(); i++) {
-                if (personajeAEditar.getArmas().get(i).getNombre().equals("Maza")) {
-                    personajeAEditar.getArmas().remove(personajeAEditar.getArmas().get(i));
-                    tieneMaza = false;
-                }
-            }
-            if (!tieneMaza) {
-                personajeAEditar.getArmas().add(new Arma(
-                        "Maza", "6+1", "1d6", "contundente"));
-            }
-        });
+
 
 
         fabGuardar.setOnClickListener(v -> {
@@ -255,12 +231,34 @@ public class CrearActivity extends AppCompatActivity {
                             Integer.parseInt(etCarisma.getText().toString()), Integer.parseInt(etBonCom.getText().toString()));
 
                 }
-
+                personajeAGuardar.setArmas(personajeAEditar.getArmas());
                 intent.putExtra(EXTRA_PERSONAJE, personajeAGuardar);
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             }
         });
 
+    }
+
+    public void checkBotones(boolean tieneArma, Button button, String nombreArma, String bonoArma, String danyo, String tipodanyo) {
+        Arma armaABorrar = null;
+        tieneArma = false;
+        for (int i = 0; i < personajeAEditar.getArmas().size(); i++) {
+            if (personajeAEditar.getArmas().get(i).getNombre().equals(nombreArma)) {
+                armaABorrar = personajeAEditar.getArmas().get(i);
+                tieneArma = true;
+            } else {
+                tieneArma = false;
+            }
+        }
+        if (!tieneArma) {
+            personajeAEditar.getArmas().add(new Arma(
+                    nombreArma, bonoArma, danyo, tipodanyo));
+            button.setBackgroundColor(getResources().getColor(R.color.rosa));
+        } else {
+            personajeAEditar.getArmas().remove(armaABorrar);
+            button.setBackgroundColor(getResources().getColor(R.color.Prussian_blue));
+
+        }
     }
 }
