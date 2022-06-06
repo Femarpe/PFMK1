@@ -1,5 +1,7 @@
 package net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Inventario;
-
+/**
+ *A Implementar en el futuro
+ */
 public class ObjetoInventario {
 
     private String nombre;

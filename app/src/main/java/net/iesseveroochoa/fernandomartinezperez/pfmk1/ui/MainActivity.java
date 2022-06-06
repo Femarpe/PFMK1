@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, CrearActivity.class);
             int codigoNuevoPersonaje = OPTION_REQUEST_CREAR;
             startActivityForResult(intent, codigoNuevoPersonaje);
-            //addEjemplo();
         });
 
         adapter.setOnItemClickBorrarListener(personaje -> {

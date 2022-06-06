@@ -1,5 +1,7 @@
 package net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Magia;
-
+/**
+ *A Implementar en el futuro
+ */
 public class Hechizo {
 
     private String nombreHechizo;

@@ -25,7 +25,9 @@ public class Arma implements Parcelable {
 
     public static final String TABLE_NAME = "arma";
     public static final String IDARMA = "idArma";
-
+    /**
+     * Parametros de un Arma
+     */
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = IDARMA)
@@ -44,6 +46,9 @@ public class Arma implements Parcelable {
     @Ignore
     private int contador = 1;
 
+    /**
+     * Constructor
+     */
     public Arma( int fkIdPersonaje, String nombre, String bono, String danyo, String tipodanyo) {
         this.fkIdPersonaje = fkIdPersonaje;
         this.nombre = nombre;
@@ -61,6 +66,9 @@ public class Arma implements Parcelable {
 
     }
 
+    /**
+     *getters y setters
+     */
     public int getIdArma() {
         return idArma;
     }

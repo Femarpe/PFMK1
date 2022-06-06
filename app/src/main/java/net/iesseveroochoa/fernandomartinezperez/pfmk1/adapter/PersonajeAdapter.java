@@ -3,6 +3,7 @@ package net.iesseveroochoa.fernandomartinezperez.pfmk1.adapter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,6 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
 
     private OnItemClickBorrarListener listenerBorrar;
     private OnItemClickEditarListener listenerEditar;
-
 
 
     public void setPersonajes(List<Personaje> personajes) {
@@ -73,7 +73,9 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
             holder.tvClaseArmadura.setText(String.valueOf(personaje.getClaseArmadura()));
             holder.tvNivel.setText(personaje.getNivel());
 
-
+            /**
+             *Aqui serellenan los datos de las caracteristicas en los items del recyclerview
+             */
             holder.tvValorFuerza.setText("Valor:" + String.valueOf(personaje.getValFuerza()));
             holder.tvModFuerza.setText("Modificador:" + String.valueOf(personaje.getModFuerza()));
 
@@ -95,10 +97,12 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
             holder.tvIniciativa.setText(String.valueOf(personaje.getIniciativa()));
             holder.tvVida.setText(String.valueOf(personaje.getPgMaximos()));
 
-
+            /**
+             *A Implementar en el futuro
+             */
             /*
-            holder.tvValorFuerza.setText(R.string.valor + String.valueOf(personaje.getValFuerza()));
-            holder.tvModFuerza.setText(R.string.modificador + String.valueOf(personaje.getModFuerza()));
+            holder.tvValorFuerza.setText(Resources.getSystem().getString(R.string.valor) + String.valueOf(personaje.getValFuerza()));
+            holder.tvModFuerza.setText(Resources.getSystem().getString(R.string.modificador) + String.valueOf(personaje.getModFuerza()));
 
             holder.tvValorDestreza.setText(R.string.valor + String.valueOf(personaje.getValDestreza()));
             holder.tvModDestreza.setText(R.string.modificador + String.valueOf(personaje.getModDestreza()));
@@ -126,6 +130,9 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
         else return 0;
     }
 
+    /**
+     *Esta clase permite que los campos dentro de cada item
+     */
     public class PersonajeViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView tvResumen;
@@ -160,6 +167,8 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
 
         private ConstraintLayout clItem;
 
+
+
         private PersonajeViewHolder(@NonNull View itemView) {
             super(itemView);
             tvResumen = itemView.findViewById(R.id.tvNombre);
@@ -190,10 +199,11 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
 
             tvIniciativa = itemView.findViewById(R.id.tvIniciativa);
             tvVida = itemView.findViewById(R.id.tvVida);
-                    /*
+
+            /*
             ivBorrar = itemView.findViewById(R.id.ivBorrar);
             ivBorrar.setOnClickListener(v -> listenerBorrar.onItemClickBorrar(
-                    personajes.get(PersonajeViewHolder.this.getAbsoluteAdapterPosition())));
+            personajes.get(PersonajeViewHolder.this.getAbsoluteAdapterPosition())));
             */
 
 
@@ -204,7 +214,7 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.Pers
         }
 
         public Personaje getPersonaje() {
-            Personaje personaje =personajes.get(PersonajeViewHolder.this.
+            Personaje personaje = personajes.get(PersonajeViewHolder.this.
                     getBindingAdapterPosition());
             return personaje;
         }

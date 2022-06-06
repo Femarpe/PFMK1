@@ -215,6 +215,9 @@ public class Personaje implements Parcelable {
 
     static int contador = 1;
 
+    /**
+     * Constructores
+     */
     public Personaje(int idPersonaje, String nombrePersonaje, String clase, String raza, String alinemiento, String nivel, String transfondo, String dadosDeGolpe, int bonCompetencia, int iniciativa, int claseArmadura, int velocidad, int pgMaximos, int pgActuales, int percepcionPasiva) {
         this.idPersonaje = idPersonaje;
         this.nombrePersonaje = nombrePersonaje;
@@ -330,6 +333,7 @@ public class Personaje implements Parcelable {
         this.competenciaPersuasion = competenciaPersuasion;
     }
 
+    /** Este metodo inserta los valores de las caracterisricas y llama al metodo que calcula los modificadores*/
     public void setValorCaracteristicas(int fuerza, int destreza, int constitucion, int inteligencia, int sabiduria, int carisma, int bonCompetencia) {
         setValFuerza(fuerza);
         setValDestreza(destreza);
@@ -341,6 +345,7 @@ public class Personaje implements Parcelable {
         this.bonCompetencia = bonCompetencia;
     }
 
+    /** Este metodo calcula e inserta todos los modificadores de las cartacteristicas y habilidades*/
     public void setModCaracteristica() {
         setModFuerza(calcularMod(getValFuerza(), isCompetenciaFuerza()));
         setAtletismo(calcularMod(getValFuerza(), isCompetenciaAtletismo()));
@@ -374,7 +379,9 @@ public class Personaje implements Parcelable {
 
 
     }
-
+    /**
+     *Este metodo calcula el modificador de caracteristica segun el valor de las caracteristicas
+     */
     public int calcularMod(int valorCaracteristica, boolean competencia) {
 
         int resultado = 0;
@@ -418,6 +425,9 @@ public class Personaje implements Parcelable {
     }
 
 
+    /**
+     *Getters y Setters
+     */
     public int getIdPersonaje() {
         return idPersonaje;
     }
@@ -1147,6 +1157,9 @@ public class Personaje implements Parcelable {
     }
 
 
+    /**
+     *Metodos de Parcelable
+     */
     @Override
     public int describeContents() {
         return 0;

@@ -1,5 +1,7 @@
 package net.iesseveroochoa.fernandomartinezperez.pfmk1.model.habilidadesYCompetencias;
-
+/**
+ *A Implementar en el futuro
+ */
 public class RasgoOCompetencia {
 
     private String nombre;

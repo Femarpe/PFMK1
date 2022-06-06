@@ -1,7 +1,9 @@
 package net.iesseveroochoa.fernandomartinezperez.pfmk1.model.Magia;
 
 import java.util.List;
-
+/**
+ *A Implementar en el futuro
+ */
 public class Hechizos {
 
     private List<Hechizo> trucos;
