@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -99,19 +100,45 @@ public class CrearActivity extends AppCompatActivity {
             etNivel.setText(personajeAEditar.getNivel());
             etTransfondo.setText(personajeAEditar.getTransfondo());
             etDadosGolpe.setText(personajeAEditar.getDadosDeGolpe());
+
             etBonCom.setText(String.valueOf(personajeAEditar.getBonCompetencia()));
+            etBonCom.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
+
             etIniciativa.setText(String.valueOf(personajeAEditar.getIniciativa()));
+            etIniciativa.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
+
             etClasArmadura.setText(String.valueOf(personajeAEditar.getClaseArmadura()));
+            etClasArmadura.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
+
             etVelocidad.setText(String.valueOf(personajeAEditar.getVelocidad()));
+            etVelocidad.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
+
             etPuntosGolpeMax.setText(String.valueOf(personajeAEditar.getPgMaximos()));
+            etPuntosGolpeMax.setFilters(new InputFilter[] {new InputFilter.LengthFilter(3)});
+
             etPuntosGolpeAtc.setText(String.valueOf(personajeAEditar.getPgActuales()));
+            etPuntosGolpeAtc.setFilters(new InputFilter[] {new InputFilter.LengthFilter(3)});
+
             etPercepPasiva.setText(String.valueOf(personajeAEditar.getPercepcionPasiva()));
+            etPercepPasiva.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
+
             etFuerza.setText(String.valueOf(personajeAEditar.getValFuerza()));
+            etFuerza.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
+
             etDestreza.setText(String.valueOf(personajeAEditar.getValDestreza()));
+            etDestreza.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
+
             etConstitucion.setText(String.valueOf(personajeAEditar.getValConstitucion()));
+            etConstitucion.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
+
             etInteligencia.setText(String.valueOf(personajeAEditar.getValInteligencia()));
+            etInteligencia.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
+
             etSabiduria.setText(String.valueOf(personajeAEditar.getValSabiduria()));
+            etSabiduria.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
+
             etCarisma.setText(String.valueOf(personajeAEditar.getValCarisma()));
+            etCarisma.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
 
             tieneEspada = tieneaArmas(tieneEspada, btAddEspada, "Espada", personajeAEditar);
             tieneHacha = tieneaArmas(tieneHacha, btAddHacha, "Hacha", personajeAEditar);
